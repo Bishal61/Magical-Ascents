@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Trek Adventures | Explore the Himalayas</title>
+    <link rel="stylesheet" href="src/output.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-['Open_Sans'] antialiased">
+  
+    <!-- Hero Section -->
+    <section class="hero-section relative min-h-screen  overflow-hidden">
+
+        <div class="container max-w-6xl mx-auto px-4">
+        <div class="absolute inset-0">
+            <div class="hero-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2070&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-32 md:py-0 md:min-h-screen flex items-center">
+            <div class="max-w-2xl">
+                <div class="hero-badge inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 mb-6">
+                    <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                    <span class="text-white text-sm font-medium">Adventure Awaits in Nepal</span>
+                </div>
+
+                <h1 class="hero-title font-['Manrope'] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] text-5xl md:text-7xl font-bold text-white leading-tight mb-4 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
+                    Discover the
+                    <span class="drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">Himalayas</span>
+                </h1>
+
+
+                <p class="hero-description text-white text-lg leading-relaxed mb-8 max-w-xl">
+                    Experience the breathtaking beauty of Nepal's majestic mountains. From the legendary Everest Base Camp to serene Annapurna trails, embark on a journey that will transform your soul.
+                </p>
+
+                <div class="hero-buttons flex flex-wrap gap-4 mb-12">
+                    <button class="group bg-primary hover:bg-secondary text-white hover:text-primary px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 flex items-center gap-2">
+                        Explore Treks
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </button>
+                    <button class="group border-2 border-secondary/30 hover:border-secondary text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-primary/10 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                        Watch Video
+                    </button>
+                </div>
+
+                <div class="hero-stats grid grid-cols-3 gap-8 border-t border-primary/20 pt-8">
+                    <div class="text-center md:text-left">
+                        <p class="stat-number font-['Manrope'] text-4xl font-bold text-white" data-value="500">500+</p>
+                        <p class="text-white text-sm">Expert Treks</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <p class="stat-number font-['Manrope'] text-4xl font-bold text-white" data-value="15">15+</p>
+                        <p class="text-white text-sm">Years Experience</p>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <p class="stat-number font-['Manrope'] text-4xl font-bold text-white" data-value="10000">10000+</p>
+                        <p class="text-white text-sm">Happy Trekkers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    
+    <script>
+        gsap.registerPlugin(gsap.ScrollTrigger);
+
+        gsap.from('.nav-item', {
+            opacity: 0,
+            y: -30,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+            delay: 0.3
+        });
+
+        gsap.from('.logo', {
+            opacity: 0,
+            x: -50,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.2
+        });
+
+        const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        heroTL.from('.hero-badge', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            delay: 0.5
+        })
+        .from('.hero-title', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+        }, '-=0.4')
+        .from('.hero-subtitle', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+        }, '-=0.5')
+        .from('.hero-description', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+        }, '-=0.4')
+        .from('.hero-buttons', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+        }, '-=0.3')
+        .from('.hero-stats', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.15,
+        }, '-=0.4');
+
+        gsap.from('.hero-image', {
+            opacity: 0,
+            scale: 1.1,
+            duration: 1.5,
+            ease: 'power2.out',
+            delay: 0.8
+        });
+
+        gsap.to('.hero-image', {
+            scale: 1,
+            duration: 2,
+            ease: 'power1.inOut',
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        gsap.utils.toArray('.scroll-indicator').forEach((el) => {
+            gsap.to(el, {
+                y: 10,
+                duration: 1,
+                repeat: -1,
+                yoyo: true,
+                ease: 'power1.inOut'
+            });
+        });
+
+        gsap.utils.toArray('.stat-number').forEach((el) => {
+            const endValue = parseInt(el.getAttribute('data-value'));
+            gsap.to(el, {
+                innerHTML: endValue,
+                duration: 2,
+                ease: 'power2.out',
+                snap: { innerHTML: 1 },
+                scrollTrigger: {
+                    trigger: '.hero-stats',
+                    start: 'top 80%'
+                },
+                onUpdate: function() {
+                    el.innerHTML = Math.round(this.targets()[0].innerHTML) + '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
