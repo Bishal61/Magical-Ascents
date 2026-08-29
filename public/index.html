@@ -4962,6 +4962,94 @@
     </section>
 
     <!-- ========================================================================= -->
+    <!-- NEWSLETTER CTA SECTION                                                    -->
+    <!-- ========================================================================= -->
+    <section class="relative text-white overflow-hidden bg-[#002642] pt-14 pb-4 lg:pt-16 lg:pb-6">
+      <!-- Ambient Glow & Mountain Texture -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-secondary/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-secondary text-xs font-bold tracking-wider uppercase mb-5 drop-shadow-xs">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <span>The Himalayan Dispatch</span>
+        </div>
+
+        <!-- Heading -->
+        <h2 class="font-['Playfair_Display'] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 drop-shadow-md">
+          Join Our Expedition Circle
+        </h2>
+
+        <!-- Subtitle -->
+        <p class="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto mb-8 font-medium leading-relaxed drop-shadow-xs">
+          Subscribe for early-bird expedition rates, seasonal weather & permit alerts, and expert Himalayan route guides directly to your inbox.
+        </p>
+
+        <!-- Newsletter Input Box -->
+        <form
+          class="max-w-xl mx-auto flex flex-col sm:flex-row items-center gap-3 p-2 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl transition-all focus-within:border-secondary/70 focus-within:ring-2 focus-within:ring-secondary/30"
+          onsubmit="
+            event.preventDefault();
+            const btn = this.querySelector('button');
+            const input = this.querySelector('input');
+            btn.textContent = 'Subscribed!';
+            btn.classList.add('bg-emerald-600');
+            input.value = '';
+            input.placeholder = 'Thank you for joining!';
+          "
+        >
+          <div class="flex items-center gap-3 w-full px-3 py-2 sm:py-0">
+            <svg class="w-5 h-5 text-slate-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <input
+              type="email"
+              placeholder="Enter your email address..."
+              required
+              class="w-full bg-transparent text-white placeholder-slate-300 text-sm font-medium focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-white font-bold px-7 py-3 rounded-xl text-sm transition-all duration-300 shrink-0 shadow-lg shadow-secondary/30 hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            Subscribe
+          </button>
+        </form>
+
+        <!-- Perks / Trust Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 mt-6 text-xs text-slate-300 font-medium">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            No Spam Ever
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Exclusive Discounts
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Unsubscribe Anytime
+          </span>
+        </div>
+      </div>
+
+      <!-- White separator connecting smoothly to footer -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 mt-12 lg:mt-14">
+        <div class="h-[1.5px] w-full bg-gradient-to-r from-transparent via-white/25 to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
     <!-- FOOTER                                                                    -->
     <!-- ========================================================================= -->
     <footer id="contact" class="relative text-white overflow-hidden bg-slate-950 border-t border-slate-700/50">
