@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./public/src/output.css && cp ./src/main.js ./public/src/main.js",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./public/src/output.css && cp ./src/main.js ./public/src/main.js && cp -r ./src/assets/* ./public/assets/ 2>/dev/null || true",
     "watch": "npx @tailwindcss/cli -i ./src/input.css -o ./public/src/output.css --watch"
   },
   "dependencies": {

@@ -1,8 +1,55 @@
 @import "tailwindcss";
+@source "../public";
 
 @theme {
-    --color-primary: #E8604C;
-    --color-secondary: #313041;
+    --color-primary: #003153;
+    --color-secondary: #ff5f1f;
+}
+
+/* Style mobile details summaries to remove default triangles */
+details summary::-webkit-details-marker {
+    display: none;
+}
+details summary {
+    list-style: none;
+}
+
+/* ── Split-Screen Hero & Search Widget ── */
+.hero-swiper {
+    height: calc(100vh - 120px) !important;
+    min-height: 680px !important;
+}
+
+@media (max-width: 1023px) {
+    .hero-swiper {
+        height: auto !important;
+        min-height: calc(100vh - 80px) !important;
+    }
+}
+
+/* Floating Search Widget Styling */
+.trip-search-widget {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 49, 83, 0.25), 0 12px 24px -12px rgba(0, 0, 0, 0.1);
+}
+
+.widget-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.widget-select:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 95, 31, 0.15);
 }
 
 /* Custom Utilities for Premium Hero Slider */
@@ -14,7 +61,12 @@
 
 .hero-title-line {
     display: block;
-    transform: translateY(100%);
+}
+
+.ken-burns-bg {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 .custom-nav-btn {
@@ -51,3 +103,398 @@
 .hero-attribute-card:hover {
     transform: translateY(-2px);
 }
+
+.premium-text-shadow {
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.95);
+}
+
+.btn-premium-fill {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-primary, #003153);
+    color: #ffffff !important;
+    border: 1px solid var(--color-primary, #003153);
+    transition: color 0.65s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-secondary, #ff5f1f);
+    z-index: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium-fill:hover {
+    border-color: var(--color-secondary, #ff5f1f);
+    color: #ffffff !important;
+    box-shadow: 0 12px 24px -6px rgba(255, 95, 31, 0.3);
+}
+
+.btn-premium-fill:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-premium-fill > * {
+    position: relative;
+    z-index: 10;
+}
+
+.btn-premium-fill-outline {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: color 0.65s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium-fill-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.15); /* Soft white glass fill */
+    z-index: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium-fill-outline:hover {
+    border-color: #ffffff;
+    box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.1);
+}
+
+.btn-premium-fill-outline:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-premium-fill-outline > * {
+    position: relative;
+    z-index: 10;
+}
+
+.nav-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@keyframes float-subtle {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+@keyframes wave-wind {
+    0%, 100% {
+        transform: translateY(0) rotate(1deg) skewY(1deg) scaleY(1);
+    }
+    20% {
+        transform: translateY(-2px) rotate(-1.5deg) skewY(-1deg) scaleY(0.98);
+    }
+    40% {
+        transform: translateY(1px) rotate(1deg) skewY(0.5deg) scaleY(1.02);
+    }
+    60% {
+        transform: translateY(-3px) rotate(-1deg) skewY(-1.5deg) scaleY(0.99);
+    }
+    80% {
+        transform: translateY(0) rotate(1.5deg) skewY(1deg) scaleY(1.01);
+    }
+}
+
+.animate-bounce-subtle {
+    animation: float-subtle 4s ease-in-out infinite;
+}
+
+.animate-wind-flag {
+    animation: wave-wind 2.8s ease-in-out infinite;
+    transform-origin: right center;
+}
+
+/* Starburst Ribbon Badge */
+.ribbon {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff !important;
+  --c: var(--color-secondary, #ff5f1f);
+  
+  padding: .6em .85em;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+.ribbon:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 45% 0 auto;
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--c), #000 35%);
+  clip-path: polygon(calc(100%/3) 0,calc(200%/3) 0,100% 90%,80% 85%,calc(200%/3) 100%,calc(100%/3) 0,calc(200%/3) 0,calc(100%/3) 100%,20% 85%,0 90%);
+}
+
+.ribbon:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(35% 35%,#0000 96%,#0003 97% 99%,#0000) var(--c);
+  clip-path: polygon(100.00% 50.00%,89.66% 55.22%,98.30% 62.94%,86.96% 65.31%,93.30% 75.00%,81.73% 74.35%,85.36% 85.36%,74.35% 81.73%,75.00% 93.30%,65.31% 86.96%,62.94% 98.30%,55.22% 89.66%,50.00% 100.00%,44.78% 89.66%,37.06% 98.30%,34.69% 86.96%,25.00% 93.30%,25.65% 81.73%,14.64% 85.36%,18.27% 74.35%,6.70% 75.00%,13.04% 65.31%,1.70% 62.94%,10.34% 55.22%,0.00% 50.00%,10.34% 44.78%,1.70% 37.06%,13.04% 34.69%,6.70% 25.00%,18.27% 25.65%,14.64% 14.64%,25.65% 18.27%,25.00% 6.70%,34.69% 13.04%,37.06% 1.70%,44.78% 10.34%,50.00% 0.00%,55.22% 10.34%,62.94% 1.70%,65.31% 13.04%,75.00% 6.70%,74.35% 18.27%,85.36% 14.64%,81.73% 25.65%,93.30% 25.00%,86.96% 34.69%,98.30% 37.06%,89.66% 44.78%);
+}
+
+/* ── Destinations Expanding Flex Columns ── */
+.dest-expand-card {
+  transition: flex 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .dest-expand-card {
+    flex: 1 1 0%;
+  }
+  .dest-expand-container:hover .dest-expand-card {
+    opacity: 0.75;
+  }
+  .dest-expand-container .dest-expand-card:hover {
+    flex: 1.85 1 0%;
+    opacity: 1;
+  }
+}
+
+/* Continuous Logo Marquee Track */
+@keyframes marquee-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.affiliations-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-slide 24s linear infinite;
+  will-change: transform;
+}
+
+.affiliations-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* ── Pure Scenic Parallax Mountain Vista ── */
+.parallax-cta-section {
+  background-image: linear-gradient(to bottom, rgba(10, 15, 30, 0.55), rgba(2, 6, 23, 0.45), rgba(10, 15, 30, 0.70)),
+                    url('https://images.unsplash.com/photo-1533130061792-64b345e4a833?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax-cta-section {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+}
+
+.package-slide-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.package-slide-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 45px -12px rgba(0, 49, 83, 0.14), 0 10px 20px -8px rgba(0, 0, 0, 0.06);
+}
+
+.package-slide-card .package-img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.package-slide-card:hover .package-img {
+  transform: scale(1.06);
+}
+
+/* ── Authentic Google & TripAdvisor Testimonials ── */
+.trust-badge-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.trust-badge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(0, 49, 83, 0.12), 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+}
+
+.review-filter-btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.review-filter-btn.active {
+  background-color: var(--color-primary, #003153);
+  color: #ffffff;
+  border-color: var(--color-primary, #003153);
+  box-shadow: 0 4px 14px -2px rgba(0, 49, 83, 0.25);
+}
+
+.google-review-card, .tripadvisor-review-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+}
+.google-review-card:hover, .tripadvisor-review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 45px -12px rgba(0, 49, 83, 0.12), 0 10px 20px -8px rgba(0, 0, 0, 0.05);
+}
+
+.testimonials-swiper .swiper-slide {
+  height: auto !important;
+  display: flex !important;
+}
+
+.review-text-container {
+  min-height: 5.25rem;
+}
+
+/* TripAdvisor Rating Bubbles */
+.ta-bubble {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #00aa6c;
+  display: inline-block;
+}
+
+/* Google Star Custom Color */
+.google-star {
+  color: #fbbc04;
+}
+
+/* Review Thumbnail Zoom */
+.review-photo-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.review-photo-thumb img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.review-photo-thumb:hover img {
+  transform: scale(1.08);
+}
+.review-photo-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.review-photo-thumb:hover::after {
+  opacity: 1;
+}
+
+/* Owner Response Box */
+.owner-response-box {
+  background: #f8fafc;
+  border-left: 3px solid var(--color-secondary, #ff5f1f);
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+/* Swiper Pagination Styling (Consistent across Hero, Testimonials, Packages) */
+.testimonials-swiper .swiper-pagination-bullet,
+.featured-packages-swiper .swiper-pagination-bullet,
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #94a3b8;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  border-radius: 9999px;
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active,
+.featured-packages-swiper .swiper-pagination-bullet-active,
+.swiper-pagination-bullet-active {
+  background: var(--color-secondary, #ff5f1f) !important;
+  width: 28px !important;
+  opacity: 1 !important;
+  border-radius: 9999px !important;
+}
+
+/* Helpful Button */
+.helpful-btn {
+  transition: all 0.2s ease;
+}
+.helpful-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+.helpful-btn.voted {
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border-color: #bae6fd;
+}
+.helpful-btn.voted svg {
+  fill: #0284c7;
+}
+
+/* ── Modern Elevated Blog Cards ── */
+.blog-card,
+.blog-elevated-card {
+  box-shadow: 0 10px 30px -8px rgba(0, 49, 83, 0.09), 0 4px 14px -4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+}
+.blog-card:hover,
+.blog-elevated-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 55px -12px rgba(0, 49, 83, 0.20), 0 14px 28px -8px rgba(0, 0, 0, 0.09);
+  border-color: #cbd5e1;
+}
+.blog-elevated-card .blog-thumb {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.blog-elevated-card:hover .blog-thumb {
+  transform: scale(1.07);
+}
+.blog-calendar-badge {
+  box-shadow: 0 8px 20px -2px rgba(0, 0, 0, 0.20);
+}
+
