@@ -282,9 +282,6 @@
   .-top-16 {
     top: calc(var(--spacing) * -16);
   }
-  .-top-24 {
-    top: calc(var(--spacing) * -24);
-  }
   .top-0 {
     top: 0;
   }
@@ -302,9 +299,6 @@
   }
   .-right-16 {
     right: calc(var(--spacing) * -16);
-  }
-  .-right-24 {
-    right: calc(var(--spacing) * -24);
   }
   .-right-32 {
     right: calc(var(--spacing) * -32);
@@ -326,9 +320,6 @@
   }
   .-bottom-16 {
     bottom: calc(var(--spacing) * -16);
-  }
-  .-bottom-24 {
-    bottom: calc(var(--spacing) * -24);
   }
   .bottom-0 {
     bottom: 0;
@@ -353,9 +344,6 @@
   }
   .-left-16 {
     left: calc(var(--spacing) * -16);
-  }
-  .-left-24 {
-    left: calc(var(--spacing) * -24);
   }
   .-left-32 {
     left: calc(var(--spacing) * -32);
@@ -980,12 +968,6 @@
   .border-emerald-100 {
     border-color: var(--color-emerald-100);
   }
-  .border-primary\/10 {
-    border-color: color-mix(in srgb, #003153 10%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
-    }
-  }
   .border-primary\/20 {
     border-color: color-mix(in srgb, #003153 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1565,6 +1547,9 @@
   }
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
+  }
+  .pb-8 {
+    padding-bottom: calc(var(--spacing) * 8);
   }
   .pb-12 {
     padding-bottom: calc(var(--spacing) * 12);
@@ -3168,6 +3153,11 @@
   .lg\:pt-28 {
     @media (width >= 64rem) {
       padding-top: calc(var(--spacing) * 28);
+    }
+  }
+  .lg\:pb-12 {
+    @media (width >= 64rem) {
+      padding-bottom: calc(var(--spacing) * 12);
     }
   }
   .lg\:pb-16 {
