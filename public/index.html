@@ -4972,30 +4972,36 @@
         class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none z-0"
       />
       <!-- Natural ambient lighting to preserve full mountain vista clarity with crisp text -->
-      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/65 to-slate-950/85 pointer-events-none z-[1]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/95 pointer-events-none z-[1]"></div>
 
-      <div class="relative z-10 max-w-6xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-          
-          <!-- Column 1: Big Logo & Direct Special Colored Social Icons (No heavy text) -->
-          <div class="space-y-6">
+      <div class="relative z-10 max-w-6xl mx-auto px-6 py-14 lg:py-16">
+        
+        <!-- =================================================================== -->
+        <!-- STEP 1: TOP TIER (Company Desc & Socials | Newsletter | Contact)   -->
+        <!-- =================================================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-white/10">
+          <!-- 1.1: Company Logo, Description & Brand Socials -->
+          <div class="lg:col-span-5 space-y-4">
             <a href="#home" class="inline-block">
               <img
                 src="assets/images/magicla-ascent-logo.png"
                 alt="Magical Ascents"
-                class="h-16 sm:h-20 w-auto object-contain drop-shadow-md"
+                class="h-16 sm:h-18 w-auto object-contain drop-shadow-md"
               />
             </a>
+            <p class="text-slate-300 text-sm leading-relaxed max-w-md drop-shadow-xs">
+              Pioneering authentic Himalayan expeditions, luxury treks, and mountaineering adventures across Nepal with certified Sherpa leadership and eco-conscious travel ethics.
+            </p>
             
             <!-- Social Media Handles (Direct with signature brand colors) -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2.5 pt-1">
               <!-- Facebook (#1877F2) -->
               <a
                 href="#"
-                class="w-10 h-10 rounded-xl bg-[#1877F2] text-white flex items-center justify-center shadow-lg shadow-[#1877F2]/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
+                class="w-9 h-9 rounded-lg bg-[#1877F2] text-white flex items-center justify-center shadow-md shadow-[#1877F2]/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
                 aria-label="Facebook"
               >
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
                   <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
                 </svg>
               </a>
@@ -5003,10 +5009,10 @@
               <!-- Instagram (Signature Gradient) -->
               <a
                 href="#"
-                class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-lg shadow-rose-500/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
+                class="w-9 h-9 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-rose-500/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
                 aria-label="Instagram"
               >
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                 </svg>
               </a>
@@ -5014,10 +5020,10 @@
               <!-- YouTube (Signature #FF0000) -->
               <a
                 href="#"
-                class="w-10 h-10 rounded-xl bg-[#FF0000] text-white flex items-center justify-center shadow-lg shadow-[#FF0000]/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
+                class="w-9 h-9 rounded-lg bg-[#FF0000] text-white flex items-center justify-center shadow-md shadow-[#FF0000]/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
                 aria-label="YouTube"
               >
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
               </a>
@@ -5027,45 +5033,22 @@
                 href="https://wa.me/9779851025658"
                 target="_blank"
                 rel="noopener"
-                class="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center shadow-lg shadow-[#25D366]/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
+                class="w-9 h-9 rounded-lg bg-[#25D366] text-white flex items-center justify-center shadow-md shadow-[#25D366]/25 hover:scale-110 hover:-translate-y-0.5 transition-all duration-300"
                 aria-label="WhatsApp"
               >
-                <svg class="w-5 h-5 fill-current">
+                <svg class="w-4.5 h-4.5 fill-current">
                   <use href="src/icons.svg#icon-whatsapp"></use>
                 </svg>
               </a>
             </div>
           </div>
 
-          <!-- Column 2: Destinations -->
-          <div>
-            <h4 class="font-['Manrope'] font-bold text-lg mb-5 text-white drop-shadow-sm">Destinations</h4>
-            <ul class="space-y-3">
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Everest Base Camp</a></li>
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Annapurna Circuit</a></li>
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Langtang Valley</a></li>
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Manaslu Circuit</a></li>
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Upper Mustang</a></li>
-            </ul>
-          </div>
-
-          <!-- Column 3: Company -->
-          <div>
-            <h4 class="font-['Manrope'] font-bold text-lg mb-5 text-white drop-shadow-sm">Company</h4>
-            <ul class="space-y-3">
-              <li><a href="#about" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">About Us</a></li>
-              <li><a href="#packages" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Tour Packages</a></li>
-              <li><a href="#blog" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Travel Blog</a></li>
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Our Guides</a></li>
-              <li><a href="#" class="text-slate-200 hover:text-secondary text-sm font-medium transition-colors drop-shadow-xs">Why Choose Us</a></li>
-            </ul>
-          </div>
-
-          <!-- Column 4: Newsletter + Lightweight Contact Icons (No heavy text, No card background) -->
-          <div>
-            <h4 class="font-['Manrope'] font-bold text-lg mb-4 text-white drop-shadow-sm">Newsletter</h4>
+          <!-- 1.2: Newsletter -->
+          <div class="lg:col-span-4 space-y-3">
+            <h4 class="font-['Manrope'] font-bold text-base text-white drop-shadow-sm">Join Our Expedition Circle</h4>
+            <p class="text-xs text-slate-300 drop-shadow-xs">Get seasonal trek updates, permit alerts, and exclusive early-bird rates.</p>
             <form
-              class="flex items-center gap-2 mb-6"
+              class="flex items-center gap-2 pt-1"
               onsubmit="
                 event.preventDefault();
                 this.querySelector('button').textContent = 'Joined!';
@@ -5074,54 +5057,164 @@
             >
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder="Enter your email"
                 required
-                class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-300 focus:outline-none focus:border-secondary transition-colors"
+                class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-300 focus:outline-none focus:border-secondary transition-colors"
               />
               <button
                 type="submit"
-                class="bg-secondary hover:bg-secondary/90 text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors cursor-pointer shrink-0 shadow-md"
+                class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer shrink-0 shadow-md hover:shadow-lg hover:shadow-secondary/30"
               >
                 Join
               </button>
             </form>
+          </div>
 
-            <!-- Premium Minimal Contact List (Icons Only, No card box) -->
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-slate-200 text-sm drop-shadow-xs">
-                <svg class="w-4.5 h-4.5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- 1.3: Contact -->
+          <div class="lg:col-span-3 space-y-3">
+            <h4 class="font-['Manrope'] font-bold text-base text-white drop-shadow-sm">Contact Us</h4>
+            <ul class="space-y-2.5 text-sm">
+              <li class="flex items-center gap-2.5 text-slate-200 drop-shadow-xs">
+                <svg class="w-4 h-4 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                <span>Thamel, Kathmandu, Nepal</span>
+                <span class="text-xs">Thamel, Kathmandu, Nepal</span>
               </li>
-              <li class="flex items-center gap-3 text-slate-200 text-sm drop-shadow-xs">
-                <svg class="w-4.5 h-4.5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <li class="flex items-center gap-2.5 text-slate-200 drop-shadow-xs">
+                <svg class="w-4 h-4 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                 </svg>
-                <a href="tel:+9779851025658" class="hover:text-secondary transition-colors font-medium">+977 9851025658</a>
+                <a href="tel:+9779851025658" class="hover:text-secondary text-xs transition-colors font-medium">+977 9851025658</a>
               </li>
-              <li class="flex items-center gap-3 text-slate-200 text-sm drop-shadow-xs">
-                <svg class="w-4.5 h-4.5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <li class="flex items-center gap-2.5 text-slate-200 drop-shadow-xs">
+                <svg class="w-4 h-4 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <a href="mailto:info@magicalascents.com" class="hover:text-secondary transition-colors font-medium">info@magicalascents.com</a>
+                <a href="mailto:info@magicalascents.com" class="hover:text-secondary text-xs transition-colors font-medium">info@magicalascents.com</a>
               </li>
             </ul>
           </div>
-
         </div>
 
-        <!-- Bottom Bar -->
-        <div class="border-t border-white/15 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-          <p class="drop-shadow-xs">
-            &copy; 2026 Magical Ascents. All rights reserved.
-          </p>
-          <div class="flex items-center gap-6">
-            <a href="#" class="text-slate-300 hover:text-secondary transition-colors drop-shadow-xs">Privacy Policy</a>
-            <a href="#" class="text-slate-300 hover:text-secondary transition-colors drop-shadow-xs">Terms of Service</a>
+        <!-- =================================================================== -->
+        <!-- STEP 2: MIDDLE TIER (Directory Links)                              -->
+        <!-- =================================================================== -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10 py-12 border-b border-white/10">
+          <!-- Column 2.1: Popular Treks -->
+          <div>
+            <h4 class="font-['Manrope'] font-bold text-sm uppercase tracking-wider mb-4 text-secondary drop-shadow-sm">Popular Treks</h4>
+            <ul class="space-y-2.5">
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Everest Base Camp Trek</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Annapurna Circuit Trek</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Langtang Valley Trek</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Manaslu Circuit Expedition</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Upper Mustang Kingdom</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Gokyo Lakes & Cho La Pass</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2.2: Trekking & Tours -->
+          <div>
+            <h4 class="font-['Manrope'] font-bold text-sm uppercase tracking-wider mb-4 text-secondary drop-shadow-sm">Adventures</h4>
+            <ul class="space-y-2.5">
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Peak Climbing Expeditions</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Helicopter Sightseeing Tours</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Cultural Heritage Journeys</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Photography Expeditions</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Luxury Himalayan Lodges</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Private Tailor-Made Treks</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2.3: Company & Team -->
+          <div>
+            <h4 class="font-['Manrope'] font-bold text-sm uppercase tracking-wider mb-4 text-secondary drop-shadow-sm">Company</h4>
+            <ul class="space-y-2.5">
+              <li><a href="#about" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">About Magical Ascents</a></li>
+              <li><a href="#packages" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Featured Packages</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Our Certified Sherpa Team</a></li>
+              <li><a href="#why-us" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Safety & Trust Record</a></li>
+              <li><a href="#blog" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Travel Blog & News</a></li>
+              <li><a href="#testimonials" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Verified Trekker Reviews</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2.4: Essential Info -->
+          <div>
+            <h4 class="font-['Manrope'] font-bold text-sm uppercase tracking-wider mb-4 text-secondary drop-shadow-sm">Trekker Info</h4>
+            <ul class="space-y-2.5">
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Nepal Visa & Trek Permits</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Packing & Gear Checklist</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">High-Altitude Health Tips</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Travel & Rescue Insurance</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Best Seasons in Himalayas</a></li>
+              <li><a href="#" class="text-slate-300 hover:text-white text-xs transition-colors drop-shadow-xs">Frequently Asked Questions</a></li>
+            </ul>
           </div>
         </div>
+
+        <!-- =================================================================== -->
+        <!-- STEP 3: BOTTOM TIER (Copyright, Legal & Payment Cards SVGs)         -->
+        <!-- =================================================================== -->
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-300">
+          <!-- Copyright & Privacy -->
+          <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
+            <p class="drop-shadow-xs">
+              &copy; 2026 Magical Ascents Pvt. Ltd. All rights reserved.
+            </p>
+            <div class="flex items-center gap-4">
+              <a href="#" class="text-slate-300 hover:text-secondary transition-colors drop-shadow-xs">Privacy Policy</a>
+              <span class="text-slate-600">•</span>
+              <a href="#" class="text-slate-300 hover:text-secondary transition-colors drop-shadow-xs">Terms of Service</a>
+              <span class="text-slate-600">•</span>
+              <a href="#" class="text-slate-300 hover:text-secondary transition-colors drop-shadow-xs">Sitemap</a>
+            </div>
+          </div>
+
+          <!-- Payment Cards (We Accept) -->
+          <div class="flex items-center gap-3">
+            <span class="text-[11px] text-slate-400 font-medium hidden sm:inline-block">We Accept:</span>
+            <div class="flex items-center gap-2">
+              <!-- Visa Card -->
+              <div class="h-7 px-2 bg-white rounded shadow-sm flex items-center justify-center" title="Visa">
+                <svg class="h-4 w-auto" viewBox="0 0 48 32" fill="none">
+                  <path d="M19.5 21.5l2.5-12h3.2l-2.5 12h-3.2zm14.6-11.7c-.7-.3-1.7-.5-2.8-.5-3.1 0-5.3 1.6-5.3 3.9 0 1.7 1.6 2.6 2.8 3.2 1.2.6 1.6 1 1.6 1.5 0 .8-1 1.2-1.9 1.2-1.3 0-2-.2-3.1-.7l-.4-.2-.5 2.4c.7.3 2 .6 3.4.6 3.3 0 5.5-1.6 5.5-4 0-1.3-.8-2.3-2.6-3.2-1.1-.5-1.8-.9-1.8-1.5 0-.5.6-1 1.8-1 1 0 1.8.2 2.4.5l.3.1.6-2.3zm8.9 0h-2.5c-.8 0-1.4.2-1.7 1l-4.9 10.7h3.4l.7-1.9h4.1l.4 1.9h3l-2.5-11.7zm-4.1 7.6l1.7-4.6.9 4.6h-2.6zm-19.6-7.6l-3.1 8.2-.3-1.6c-.6-2-2.3-4.1-4.3-5.1l2.8 10.2h3.4l5.1-11.7h-3.6z" fill="#1434CB"/>
+                  <path d="M7.8 9.8H2.4l-.1.6c4.2 1.1 7 3.6 8.1 6.8l-1.2-5.9c-.2-.9-.8-1.4-1.4-1.5z" fill="#F7B600"/>
+                </svg>
+              </div>
+
+              <!-- Mastercard -->
+              <div class="h-7 px-2 bg-white rounded shadow-sm flex items-center justify-center" title="Mastercard">
+                <svg class="h-4.5 w-auto" viewBox="0 0 48 32" fill="none">
+                  <circle cx="18" cy="16" r="9" fill="#EB001B"/>
+                  <circle cx="30" cy="16" r="9" fill="#F79E1B"/>
+                  <path d="M24 9.3a8.9 8.9 0 013.3 6.7 8.9 8.9 0 01-3.3 6.7 8.9 8.9 0 01-3.3-6.7c0-2.6 1.2-5 3.3-6.7z" fill="#FF5F00"/>
+                </svg>
+              </div>
+
+              <!-- American Express -->
+              <div class="h-7 px-2 bg-[#006FCF] rounded shadow-sm flex items-center justify-center" title="American Express">
+                <svg class="h-3.5 w-auto" viewBox="0 0 40 24" fill="none">
+                  <path d="M2 5h4.2l2 4.2 2-4.2h4v8.5h-2.6V8.2l-2.2 5.3h-2.3L4.8 8.2v5.3H2V5zm15 0h7.5v2h-4.8v1.1h4.5v2h-4.5v1.4h5v2H17V5zm10.8 0h3l2 3.1 2-3.1h3l-3.5 4.8 3.7 4.7h-3.1l-2.1-3.2-2.1 3.2h-3l3.7-4.7-3.6-4.8z" fill="#ffffff"/>
+                </svg>
+              </div>
+
+              <!-- UnionPay / Direct Pay -->
+              <div class="h-7 px-2 bg-white rounded shadow-sm flex items-center justify-center" title="UnionPay">
+                <svg class="h-4.5 w-auto" viewBox="0 0 48 32" fill="none">
+                  <rect x="8" y="7" width="10" height="18" rx="2" fill="#E21B23"/>
+                  <rect x="19" y="7" width="10" height="18" rx="2" fill="#0079C1"/>
+                  <rect x="30" y="7" width="10" height="18" rx="2" fill="#004A80"/>
+                  <path d="M12 11h2.5c1.5 0 2.5.8 2.5 2.2 0 1.4-1 2.2-2.5 2.2H12v3h-1.5V11H12zm1.8 3.2c.8 0 1.2-.4 1.2-1 0-.6-.4-1-1.2-1H12v2h1.8z" fill="#ffffff"/>
+                  <path d="M23 11h1.5v4.5c0 1.2.7 1.8 1.8 1.8s1.8-.6 1.8-1.8V11h1.5v4.5c0 2.2-1.4 3.2-3.3 3.2s-3.3-1-3.3-3.2V11z" fill="#ffffff"/>
+                  <path d="M34 11h1.5v6.2h3.8v1.3H34V11z" fill="#ffffff"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </footer>
 
