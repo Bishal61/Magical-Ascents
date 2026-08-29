@@ -4966,22 +4966,23 @@
     <!-- ========================================================================= -->
     <section class="relative bg-white pt-16 pb-8 lg:pt-20 lg:pb-12 overflow-hidden">
       <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-secondary text-xs font-bold tracking-wider uppercase mb-5">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-          <span>The Himalayan Dispatch</span>
+        <!-- Signature Handwritten Tagline -->
+        <div class="flex items-center justify-center gap-3 mb-2.5">
+          <span class="h-px w-10 bg-secondary"></span>
+          <span class="font-['Caveat'] text-2xl md:text-3xl text-secondary tracking-wide font-bold">
+            Stay Connected
+          </span>
+          <span class="h-px w-10 bg-secondary"></span>
         </div>
 
         <!-- Heading -->
-        <h2 class="font-['Playfair_Display'] text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-primary mb-4">
-          Join Our Expedition Circle
+        <h2 class="font-['Manrope'] text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 tracking-tight leading-tight mb-3">
+          Join Our <span class="text-secondary">Expedition Circle</span>
         </h2>
 
         <!-- Subtitle -->
-        <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
-          Subscribe for early-bird expedition rates, seasonal weather & permit alerts, and expert Himalayan route guides directly to your inbox.
+        <p class="text-slate-500 text-sm sm:text-base max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
+          Get seasonal trek updates, permit alerts, and exclusive early-bird rates.
         </p>
 
         <!-- Newsletter Input Box -->
@@ -4989,10 +4990,9 @@
           class="max-w-xl mx-auto flex flex-col sm:flex-row items-center gap-3 p-2 rounded-2xl bg-white border border-slate-200 shadow-xl shadow-slate-200/60 transition-all focus-within:border-secondary focus-within:ring-3 focus-within:ring-secondary/20"
           onsubmit="
             event.preventDefault();
-            const btn = this.querySelector('button');
+            const btn = this.querySelector('button span');
             const input = this.querySelector('input');
             btn.textContent = 'Subscribed!';
-            btn.classList.add('bg-emerald-600');
             input.value = '';
             input.placeholder = 'Thank you for joining!';
           "
@@ -5010,14 +5010,17 @@
           </div>
           <button
             type="submit"
-            class="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-white font-bold px-7 py-3.5 rounded-xl text-sm transition-all duration-300 shrink-0 shadow-lg shadow-secondary/30 hover:scale-105 active:scale-95 cursor-pointer"
+            class="btn-premium-fill w-full sm:w-auto px-7 py-3.5 rounded-xl font-['Manrope'] font-bold text-sm text-white shadow-md inline-flex items-center justify-center gap-2 group/btn cursor-pointer shrink-0"
           >
-            Subscribe
+            <span>Subscribe Now</span>
+            <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
           </button>
         </form>
 
         <!-- Perks / Trust Badges -->
-        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 mt-6 text-xs text-slate-600 font-medium">
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 mt-6 text-xs text-slate-500 font-medium">
           <span class="flex items-center gap-1.5">
             <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
