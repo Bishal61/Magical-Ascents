@@ -43,7 +43,7 @@
       }
     </style>
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -54,22 +54,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
-  <body class="font-['Open_Sans'] antialiased">
+  <body class="font-['Open_Sans'] antialiased overflow-x-hidden">
     <!-- Header -->
-    <header class="relative z-50 overflow-x-hidden">
+    <header class="relative z-50">
       <!-- Tier 1: Promo Bar (scrolls away) -->
       <div id="promo-bar" class="bg-primary text-white">
         <div
           class="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between text-sm"
         >
-          <p class="truncate font-medium">
-            Discover the Himalayas — Special Seasonal Offers Available!
-          </p>
+          <div class="flex items-center truncate">
+            <span
+              class="bg-[#E8604C] text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full mr-2.5 shadow-xs flex-shrink-0"
+              >OFFER</span
+            >
+            <p class="truncate font-medium text-xs sm:text-sm">
+              Discover the Himalayas — Special Seasonal Offers Available!
+            </p>
+          </div>
           <div class="flex items-center gap-4 flex-shrink-0">
             <a
               href="#packages"
-              class="underline hover:text-white/80 font-semibold text-xs whitespace-nowrap transition-colors"
-              >View Offer</a
+              class="text-[#FF8A65] hover:text-white font-bold text-xs whitespace-nowrap transition-colors underline"
+              >View Offer &rarr;</a
             >
             <button
               id="promo-close"
@@ -84,42 +90,38 @@
         </div>
       </div>
 
-      <!-- Tier 2: Top Bar (scrolls away) -->
-      <div id="top-bar" class="relative bg-white transition-all duration-300">
-        <!-- Slanted header background behind logo (desktop only) -->
+      <div id="header-main-wrapper" class="relative">
+        <!-- Slanted header background behind logo (desktop only) — exactly touches bottom of header without exceeding -->
         <div
-          class="absolute top-0 left-0 h-[140px] bg-primary z-40 lg:block hidden"
+          id="header-slanted-bg"
+          class="absolute top-0 left-0 bottom-0 bg-primary z-40 lg:block hidden pointer-events-none"
           style="
             width: calc(50vw - 576px + 212px);
             clip-path: polygon(0 0, 100% 0, calc(100% - 44px) 100%, 0 100%);
             min-width: 236px;
           "
         ></div>
-        <div
-          class="max-w-6xl mx-auto px-6 flex items-stretch justify-between gap-4"
-        >
-          <!-- Logo (Desktop Overlapping & Mobile Inline) -->
+
+        <!-- Tier 2: Top Bar (Desktop only, scrolls away) -->
+        <div id="top-bar" class="relative bg-white transition-all duration-300 hidden lg:block">
+          <div
+            class="max-w-6xl mx-auto px-6 flex items-stretch justify-between gap-4"
+          >
+          <!-- Logo (Desktop Overlapping) -->
           <div
             class="flex-shrink-0 relative w-36 h-12 lg:block hidden self-center"
           >
             <a
               href="#home"
-              class="absolute top-full -translate-y-1/2 left-0 w-36 h-24 flex items-center justify-start hover:scale-105 transition-transform duration-300 z-50"
+              class="absolute top-full -translate-y-1/2 left-0 w-36 h-20 flex items-center justify-start hover:scale-105 transition-transform duration-300 z-50"
             >
               <img
                 src="assets/images/magicla-ascent-logo.png"
                 alt="Magical Ascents"
-                class="h-22 w-auto object-contain"
+                class="h-16 lg:h-18 w-auto object-contain"
               />
             </a>
           </div>
-          <a href="#home" class="lg:hidden flex-shrink-0 self-center py-3">
-            <img
-              src="assets/images/magicla-ascent-logo.png"
-              alt="Magical Ascents"
-              class="h-9 w-auto"
-            />
-          </a>
 
           <!-- Right side contents without bottom border, with decreased padding -->
           <div
@@ -148,7 +150,7 @@
                 <img
                   src="assets/images/travel-expert.jpg"
                   alt="Travel Expert"
-                  class="w-full h-full rounded-full object-cover border border-white"
+                  class="w-full h-full rounded-full object-cover border border-white ring-2 ring-[#E8604C]/40"
                 />
                 <span
                   class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#25D366] border-2 border-white rounded-full"
@@ -156,7 +158,7 @@
               </div>
               <!-- Text Info -->
               <div class="flex flex-col">
-                <span class="text-xs font-semibold text-slate-500 leading-tight"
+                <span class="text-xs font-bold text-[#E8604C] leading-tight"
                   >Talk to our Expert</span
                 >
                 <span
@@ -194,11 +196,11 @@
       <!-- Tier 3: Main Navigation (STICKY on scroll) -->
       <nav id="main-nav" class="bg-white transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <!-- Logo in sticky nav (hidden by default, shown when sticky) -->
+          <!-- Logo in sticky nav (desktop only, hidden by default, shown when sticky on desktop) -->
           <a
             href="#home"
             id="sticky-logo"
-            class="flex-shrink-0 opacity-0 pointer-events-none transition-all duration-300"
+            class="hidden lg:flex flex-shrink-0 opacity-0 pointer-events-none transition-all duration-300"
           >
             <img
               src="assets/images/magicla-ascent-logo.png"
@@ -327,24 +329,568 @@
                     <use href="src/icons.svg#icon-chevron-down"></use>
                   </svg>
                 </button>
+                <!-- Mega Menu Container -->
                 <div
-                  class="absolute left-0 top-full bg-white shadow-xl rounded-xl border border-slate-100 py-3 w-56 nav-dropdown z-50 pointer-events-none group-hover:pointer-events-auto"
+                  class="absolute -left-[320px] top-full bg-white shadow-2xl rounded-2xl border border-slate-100 p-4 w-[960px] nav-dropdown-mega z-50 pointer-events-none group-hover:pointer-events-auto"
                 >
-                  <a
-                    href="#packages"
-                    class="block px-5 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
-                    >Short Treks (under 7d)</a
+                  <div class="grid grid-cols-12 gap-5 min-h-[350px]">
+                    <!-- Left Column: Regions Tabs (col-span-3) -->
+                    <div
+                      class="col-span-3 bg-slate-50/90 rounded-xl p-2 border border-slate-100 flex flex-col justify-between"
+                    >
+                      <div>
+                        <span
+                          class="block px-3 py-1.5 text-xs font-bold text-slate-800 border-b border-slate-200/60 mb-2"
+                          >Select Region</span
+                        >
+                        <div class="flex flex-col gap-1">
+                          <!-- Tab 1: Everest -->
+                          <button
+                            type="button"
+                            data-region-tab="everest"
+                            class="region-tab-btn active flex items-center justify-between px-3 py-2.5 text-sm rounded-lg cursor-pointer text-left w-full transition-all text-slate-700 hover:text-primary hover:bg-white"
+                          >
+                            <span>Everest Region</span>
+                            <span
+                              class="tab-chevron text-xs font-bold transition-all text-secondary"
+                              >→</span
+                            >
+                          </button>
+
+                          <!-- Tab 2: Annapurna -->
+                          <button
+                            type="button"
+                            data-region-tab="annapurna"
+                            class="region-tab-btn flex items-center justify-between px-3 py-2.5 text-sm rounded-lg cursor-pointer text-left w-full transition-all text-slate-700 hover:text-primary hover:bg-white"
+                          >
+                            <span>Annapurna Region</span>
+                            <span
+                              class="tab-chevron text-xs font-bold transition-all text-slate-400 opacity-60"
+                              >→</span
+                            >
+                          </button>
+
+                          <!-- Tab 3: Langtang -->
+                          <button
+                            type="button"
+                            data-region-tab="langtang"
+                            class="region-tab-btn flex items-center justify-between px-3 py-2.5 text-sm rounded-lg cursor-pointer text-left w-full transition-all text-slate-700 hover:text-primary hover:bg-white"
+                          >
+                            <span>Langtang & Helambu</span>
+                            <span
+                              class="tab-chevron text-xs font-bold transition-all text-slate-400 opacity-60"
+                              >→</span
+                            >
+                          </button>
+
+                          <!-- Tab 4: Manaslu -->
+                          <button
+                            type="button"
+                            data-region-tab="manaslu"
+                            class="region-tab-btn flex items-center justify-between px-3 py-2.5 text-sm rounded-lg cursor-pointer text-left w-full transition-all text-slate-700 hover:text-primary hover:bg-white"
+                          >
+                            <span>Manaslu & Remote</span>
+                            <span
+                              class="tab-chevron text-xs font-bold transition-all text-slate-400 opacity-60"
+                              >→</span
+                            >
+                          </button>
+
+                          <!-- Tab 5: Short Treks -->
+                          <button
+                            type="button"
+                            data-region-tab="short-treks"
+                            class="region-tab-btn flex items-center justify-between px-3 py-2.5 text-sm rounded-lg cursor-pointer text-left w-full transition-all text-slate-700 hover:text-primary hover:bg-white"
+                          >
+                            <span>Short & Scenic Treks</span>
+                            <span
+                              class="tab-chevron text-xs font-bold transition-all text-slate-400 opacity-60"
+                              >→</span
+                            >
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="pt-2 px-2 border-t border-slate-200/60 mt-1">
+                        <span class="text-[11px] text-slate-500 font-medium"
+                          >Sherpa-guided private departures</span
+                        >
+                      </div>
+                    </div>
+
+                    <!-- Right Column: Tab Panels (col-span-9) -->
+                    <div
+                      class="col-span-9 flex flex-col justify-between py-1 pl-2"
+                    >
+                      <!-- Panel 1: Everest -->
+                      <div
+                        id="mega-panel-everest"
+                        class="region-tab-panel space-y-1.5"
+                      >
+                        <div
+                          class="flex items-center justify-between border-b border-slate-100 pb-2 mb-1"
+                        >
+                          <span class="text-xs font-bold text-slate-800"
+                            >Everest Region Packages</span
+                          >
+                          <span class="text-[11px] font-semibold text-primary"
+                            >12 Featured Treks</span
+                          >
+                        </div>
+                        <div class="grid grid-cols-3 divide-x divide-slate-100 py-1">
+                          <!-- Col 1 -->
+                          <div class="flex flex-col gap-1 pr-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Everest Base Camp Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >EBC Helicopter Return</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Gokyo Ri & Renjo La Pass</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Everest Three High Passes</a
+                            >
+                          </div>
+                          <!-- Col 2 -->
+                          <div class="flex flex-col gap-1 px-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Gokyo Lakes & Cho La Pass</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Ama Dablam Base Camp</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Jiri to Everest Base Camp</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Everest Panorama Short Trek</a
+                            >
+                          </div>
+                          <!-- Col 3 -->
+                          <div class="flex flex-col gap-1 pl-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Mani Rimdu Festival Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >EBC Luxury Lodge Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Phaplu to Everest Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Island Peak with EBC Trek</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Panel 2: Annapurna -->
+                      <div
+                        id="mega-panel-annapurna"
+                        class="region-tab-panel space-y-1.5 hidden"
+                      >
+                        <div
+                          class="flex items-center justify-between border-b border-slate-100 pb-2 mb-1"
+                        >
+                          <span class="text-xs font-bold text-slate-800"
+                            >Annapurna Region Packages</span
+                          >
+                          <span class="text-[11px] font-semibold text-primary"
+                            >12 Featured Treks</span
+                          >
+                        </div>
+                        <div class="grid grid-cols-3 divide-x divide-slate-100 py-1">
+                          <!-- Col 1 -->
+                          <div class="flex flex-col gap-1 pr-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Annapurna Circuit Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Mardi Himal Ridge Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Tilicho Lake & Circuit</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Annapurna Base Camp (ABC)</a
+                            >
+                          </div>
+                          <!-- Col 2 -->
+                          <div class="flex flex-col gap-1 px-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Khopra Danda Panorama</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Mohare Danda Eco Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Annapurna Sanctuary Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Ghorepani Poon Hill Sunrise</a
+                            >
+                          </div>
+                          <!-- Col 3 -->
+                          <div class="flex flex-col gap-1 pl-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Nar Phu Valley & Annapurna</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Upper Mustang Forbidden Kingdom</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Sikles Cultural Eco Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Royal Trek Pokhara View</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Panel 3: Langtang -->
+                      <div
+                        id="mega-panel-langtang"
+                        class="region-tab-panel space-y-1.5 hidden"
+                      >
+                        <div
+                          class="flex items-center justify-between border-b border-slate-100 pb-2 mb-1"
+                        >
+                          <span class="text-xs font-bold text-slate-800"
+                            >Langtang & Helambu Packages</span
+                          >
+                          <span class="text-[11px] font-semibold text-primary"
+                            >12 Featured Treks</span
+                          >
+                        </div>
+                        <div class="grid grid-cols-3 divide-x divide-slate-100 py-1">
+                          <!-- Col 1 -->
+                          <div class="flex flex-col gap-1 pr-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Langtang Valley Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Tamang Heritage Trail</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Kyanjin Gompa & Ri Peak</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Langtang & Gosaikunda Circuit</a
+                            >
+                          </div>
+                          <!-- Col 2 -->
+                          <div class="flex flex-col gap-1 px-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Gosaikunda Sacred Lakes</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Helambu Cultural Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Lauribina High Pass Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Ganja La High Pass Expedition</a
+                            >
+                          </div>
+                          <!-- Col 3 -->
+                          <div class="flex flex-col gap-1 pl-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Shivapuri to Gosainkunda</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Ruby Valley Cultural Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Bhairab Kunda Sacred Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Langtang Valley Short Trek</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Panel 4: Manaslu -->
+                      <div
+                        id="mega-panel-manaslu"
+                        class="region-tab-panel space-y-1.5 hidden"
+                      >
+                        <div
+                          class="flex items-center justify-between border-b border-slate-100 pb-2 mb-1"
+                        >
+                          <span class="text-xs font-bold text-slate-800"
+                            >Manaslu & Wild West Packages</span
+                          >
+                          <span class="text-[11px] font-semibold text-primary"
+                            >12 Featured Treks</span
+                          >
+                        </div>
+                        <div class="grid grid-cols-3 divide-x divide-slate-100 py-1">
+                          <!-- Col 1 -->
+                          <div class="flex flex-col gap-1 pr-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Manaslu Circuit Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Upper Dolpo Wilderness</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Kanchenjunga Circuit Expedition</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Tsum Valley & Manaslu Trek</a
+                            >
+                          </div>
+                          <!-- Col 2 -->
+                          <div class="flex flex-col gap-1 px-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Lower Dolpo & Phoksundo Lake</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Makalu Base Camp Wilderness</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Upper Mustang Kingdom Discovery</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Rara Lake Discovery Trek</a
+                            >
+                          </div>
+                          <!-- Col 3 -->
+                          <div class="flex flex-col gap-1 pl-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Dhaulagiri High Pass Circuit</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Limi Valley Wilderness Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Api Base Camp Remote Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Saipal Base Camp Expedition</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Panel 5: Short Treks -->
+                      <div
+                        id="mega-panel-short-treks"
+                        class="region-tab-panel space-y-1.5 hidden"
+                      >
+                        <div
+                          class="flex items-center justify-between border-b border-slate-100 pb-2 mb-1"
+                        >
+                          <span class="text-xs font-bold text-slate-800"
+                            >Short & Scenic Treks</span
+                          >
+                          <span class="text-[11px] font-semibold text-primary"
+                            >12 Featured Treks</span
+                          >
+                        </div>
+                        <div class="grid grid-cols-3 divide-x divide-slate-100 py-1">
+                          <!-- Col 1 -->
+                          <div class="flex flex-col gap-1 pr-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Poon Hill Sunrise 4-Day Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Kathmandu Valley Rim</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Balthali Village Heritage Trail</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Pikey Peak Everest View Trek</a
+                            >
+                          </div>
+                          <!-- Col 2 -->
+                          <div class="flex flex-col gap-1 px-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Royal Trek Panoramic View</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Panchase Scenic Ridge Trail</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Nagarkot to Dhulikhel Hike</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Helambu Short 5-Day Circuit</a
+                            >
+                          </div>
+                          <!-- Col 3 -->
+                          <div class="flex flex-col gap-1 pl-3">
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Ghandruk Heritage Village Trek</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Australian Camp & Sarangkot</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Chisapani Nagarkot Loop</a
+                            >
+                            <a
+                              href="#packages"
+                              class="px-2 py-1.5 text-[13px] font-semibold text-slate-700 hover:text-primary hover:bg-slate-50 rounded-md transition-all block leading-snug"
+                              >Chandragiri Ridge Trail</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- One Clean CTA -->
+                  <div
+                    class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-2"
                   >
-                  <a
-                    href="#packages"
-                    class="block px-5 py-2 text-[15px] text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
-                    >Moderate Treks</a
-                  >
-                  <a
-                    href="#packages"
-                    class="block px-5 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary transition-colors"
-                    >Challenging Expeditions</a
-                  >
+                    <span class="text-xs text-slate-700 font-semibold"
+                      >Need tailor-made routes or private dates?</span
+                    >
+                    <a
+                      href="#packages"
+                      class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors"
+                    >
+                      <span>Explore All 35+ Nepal Trekking Packages</span>
+                      <svg
+                        class="w-3.5 h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2.5"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -457,18 +1003,28 @@
               </button>
             </div>
           </div>
-          <!-- Mobile controls -->
+          <!-- Mobile controls (Logo on Left, Bigger Hamburger on Right) -->
           <div class="lg:hidden flex items-center justify-between w-full py-3">
+            <!-- Left: Prominent Logo -->
+            <a href="#home" class="flex items-center">
+              <img
+                src="assets/images/magicla-ascent-logo.png"
+                alt="Magical Ascents"
+                class="h-10 sm:h-12 w-auto object-contain"
+              />
+            </a>
+
+            <!-- Right: Prominent Bigger Hamburger Menu Button -->
             <button
-              class="text-secondary hover:text-primary"
               id="mobile-menu-btn"
-              aria-label="Toggle menu"
+              class="flex items-center justify-center w-12 h-12 rounded-xl text-slate-800 hover:text-primary hover:bg-slate-100/80 transition-all cursor-pointer -mr-1"
+              aria-label="Open mobile menu"
             >
               <svg
-                class="w-6 h-6"
+                class="w-7 h-7 sm:w-8 sm:h-8 text-slate-800"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.3"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -478,295 +1034,736 @@
                 />
               </svg>
             </button>
-            <a
-              href="#contact"
-              class="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-md text-sm font-semibold transition-all duration-300 gap-2 group/cta"
-            >
-              <span>Plan My Trip</span>
-              <svg
-                class="w-4 h-4 text-white/80 group-hover/cta:translate-x-1 group-hover/cta:-translate-y-1 transition-transform duration-300"
-              >
-                <use href="src/icons.svg#icon-paper-plane"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <!-- Mobile menu (Accordion details-summary) -->
-        <div
-          class="lg:hidden overflow-hidden"
-          id="mobile-menu"
-          style="max-height: 0; opacity: 0"
-        >
-          <div class="max-w-6xl mx-auto px-6 pb-4 flex flex-col gap-1">
-            <!-- Nepal -->
-            <details class="group w-full border-b border-slate-100">
-              <summary
-                class="flex items-center justify-between text-slate-700 hover:text-primary py-3 text-sm font-semibold cursor-pointer"
-              >
-                <span>Nepal</span>
-                <svg
-                  class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div class="pl-4 flex flex-col gap-1.5 pb-3">
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Everest Base Camp</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Annapurna Circuit</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Langtang Valley Trek</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Manaslu Circuit Trek</a
-                >
-              </div>
-            </details>
-
-            <!-- Tibet -->
-            <details class="group w-full border-b border-slate-100">
-              <summary
-                class="flex items-center justify-between text-slate-700 hover:text-primary py-3 text-sm font-semibold cursor-pointer"
-              >
-                <span>Tibet</span>
-                <svg
-                  class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div class="pl-4 flex flex-col gap-1.5 pb-3">
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Lhasa Cultural Tour</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Everest Base Camp Tibet</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Mt. Kailash Pilgrimage</a
-                >
-              </div>
-            </details>
-
-            <!-- Bhutan -->
-            <details class="group w-full border-b border-slate-100">
-              <summary
-                class="flex items-center justify-between text-slate-700 hover:text-primary py-3 text-sm font-semibold cursor-pointer"
-              >
-                <span>Bhutan</span>
-                <svg
-                  class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div class="pl-4 flex flex-col gap-1.5 pb-3">
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Bhutan Cultural Highlights</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Druk Path Trek</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Tiger's Nest Experience</a
-                >
-              </div>
-            </details>
-
-            <!-- Trekking in Nepal -->
-            <details class="group w-full border-b border-slate-100">
-              <summary
-                class="flex items-center justify-between text-slate-700 hover:text-primary py-3 text-sm font-semibold cursor-pointer"
-              >
-                <span>Trekking in Nepal</span>
-                <svg
-                  class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div class="pl-4 flex flex-col gap-1.5 pb-3">
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Short Treks (under 7d)</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Moderate Treks</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Challenging Expeditions</a
-                >
-              </div>
-            </details>
-
-            <!-- Travel Guides -->
-            <details class="group w-full border-b border-slate-100">
-              <summary
-                class="flex items-center justify-between text-slate-700 hover:text-primary py-3 text-sm font-semibold cursor-pointer"
-              >
-                <span>Travel Guides</span>
-                <svg
-                  class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div class="pl-4 flex flex-col gap-1.5 pb-3">
-                <a
-                  href="#blog"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Nepal Visa & Entry Info</a
-                >
-                <a
-                  href="#blog"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Best Time to Visit</a
-                >
-                <a
-                  href="#blog"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Trekking Packing List</a
-                >
-                <a
-                  href="#blog"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Altitude Sickness Guide</a
-                >
-              </div>
-            </details>
-
-            <!-- Company -->
-            <details class="group w-full border-b border-slate-100">
-              <summary
-                class="flex items-center justify-between text-slate-700 hover:text-primary py-3 text-sm font-semibold cursor-pointer"
-              >
-                <span>Company</span>
-                <svg
-                  class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </summary>
-              <div class="pl-4 flex flex-col gap-1.5 pb-3">
-                <a
-                  href="#our-story"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >About Us</a
-                >
-                <a
-                  href="#testimonials"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Guest Reviews & Ratings</a
-                >
-                <a
-                  href="#packages"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Our Expert Guides</a
-                >
-                <a
-                  href="#contact"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >Booking Terms & Policies</a
-                >
-                <a
-                  href="#contact"
-                  class="text-xs text-slate-500 hover:text-primary py-1 font-medium transition-colors"
-                  >FAQs</a
-                >
-              </div>
-            </details>
-
-            <!-- Blog -->
-            <a
-              href="#blog"
-              class="nav-link text-slate-700 hover:text-primary py-3 text-sm font-semibold transition-all border-b border-slate-100"
-              >Blog</a
-            >
-            <!-- Contact Us -->
-            <a
-              href="#contact"
-              class="nav-link text-slate-700 hover:text-primary py-3 text-sm font-semibold transition-all"
-              >Contact Us</a
-            >
           </div>
         </div>
       </nav>
+
+      <!-- ===================================================================== -->
+      <!-- PREMIUM MOBILE OFF-CANVAS DRAWER (LEFT TO RIGHT SLIDE)                -->
+      <!-- ===================================================================== -->
+      <!-- Backdrop Blur Overlay -->
+      <div
+        id="mobile-drawer-backdrop"
+        class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+      ></div>
+
+      <!-- Off-Canvas Drawer Container -->
+      <aside
+        id="mobile-drawer"
+        class="fixed top-0 left-0 bottom-0 w-[320px] sm:w-[360px] max-w-[90vw] bg-white z-[101] shadow-2xl flex flex-col justify-between -translate-x-full transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        aria-label="Mobile Navigation"
+      >
+        <!-- Drawer Header (Clean White, No Grey BG) -->
+        <div
+          class="p-4 border-b border-slate-100 flex items-center justify-between bg-white"
+        >
+          <div class="flex items-center gap-2.5">
+            <img
+              src="assets/images/magicla-ascent-logo.png"
+              alt="Magical Ascents"
+              class="h-9 w-auto"
+            />
+          </div>
+          <button
+            id="mobile-drawer-close"
+            class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-800 hover:text-primary hover:border-primary transition-all duration-200 cursor-pointer shadow-xs"
+            aria-label="Close menu"
+          >
+            <svg
+              class="w-5 h-5 text-slate-900"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Drawer Navigation Content (Clean White, No Side Borders, Multi-Level Arrows, Smooth Opening) -->
+        <div class="flex-1 overflow-y-auto px-4 py-3 space-y-1 divide-y divide-slate-100">
+          <!-- 1. Nepal (Dropdown Accordion) -->
+          <details class="mobile-top-accordion group py-1.5">
+            <summary
+              class="flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+            >
+              <span>Nepal</span>
+              <svg
+                class="w-4 h-4 text-slate-800 transition-transform duration-250 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="mobile-accordion-content">
+              <div class="mobile-accordion-inner pl-3 pt-1 pb-2 space-y-1">
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Everest Region</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Annapurna Region</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Langtang Valley Trek</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Manaslu Circuit Trek</span>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- 2. Trekking in Nepal (Multi-Level Nested Accordions) -->
+          <details class="mobile-top-accordion group py-1.5">
+            <summary
+              class="flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+            >
+              <span>Trekking in Nepal</span>
+              <svg
+                class="w-4 h-4 text-slate-800 transition-transform duration-250 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <!-- Nested Sub-Accordions for Each Region (Smooth Multi-Level) -->
+            <div class="mobile-accordion-content">
+              <div class="mobile-accordion-inner pl-2 pt-1 pb-2 space-y-1">
+                <!-- Region 1: Everest Region -->
+                <details class="mobile-sub-accordion group/sub py-1">
+                  <summary
+                    class="flex items-center justify-between py-2 text-sm font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+                  >
+                    <span class="inline-flex items-center gap-2">
+                      <span class="text-secondary font-bold text-sm">&#x21B3;</span>
+                      <span>Everest Region</span>
+                    </span>
+                    <svg
+                      class="w-3.5 h-3.5 text-slate-700 transition-transform duration-200 group-open/sub:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="mobile-accordion-content">
+                    <div class="mobile-accordion-inner pl-6 py-1 space-y-1">
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Everest Base Camp Trek</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>EBC Helicopter Return</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Gokyo Ri & Renjo La Pass</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Everest Three High Passes</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Ama Dablam Base Camp</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Everest Panorama Short Trek</span>
+                      </a>
+                    </div>
+                  </div>
+                </details>
+
+                <!-- Region 2: Annapurna Region -->
+                <details class="mobile-sub-accordion group/sub py-1">
+                  <summary
+                    class="flex items-center justify-between py-2 text-sm font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+                  >
+                    <span class="inline-flex items-center gap-2">
+                      <span class="text-secondary font-bold text-sm">&#x21B3;</span>
+                      <span>Annapurna Region</span>
+                    </span>
+                    <svg
+                      class="w-3.5 h-3.5 text-slate-700 transition-transform duration-200 group-open/sub:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="mobile-accordion-content">
+                    <div class="mobile-accordion-inner pl-6 py-1 space-y-1">
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Annapurna Circuit Trek</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Mardi Himal Ridge Trek</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Tilicho Lake & Circuit</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Annapurna Base Camp (ABC)</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Ghorepani Poon Hill Sunrise</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Upper Mustang Kingdom</span>
+                      </a>
+                    </div>
+                  </div>
+                </details>
+
+                <!-- Region 3: Langtang & Helambu -->
+                <details class="mobile-sub-accordion group/sub py-1">
+                  <summary
+                    class="flex items-center justify-between py-2 text-sm font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+                  >
+                    <span class="inline-flex items-center gap-2">
+                      <span class="text-secondary font-bold text-sm">&#x21B3;</span>
+                      <span>Langtang & Helambu</span>
+                    </span>
+                    <svg
+                      class="w-3.5 h-3.5 text-slate-700 transition-transform duration-200 group-open/sub:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="mobile-accordion-content">
+                    <div class="mobile-accordion-inner pl-6 py-1 space-y-1">
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Langtang Valley Trek</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Tamang Heritage Trail</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Kyanjin Gompa & Ri Peak</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Gosaikunda Sacred Lakes</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Langtang & Gosaikunda Circuit</span>
+                      </a>
+                    </div>
+                  </div>
+                </details>
+
+                <!-- Region 4: Manaslu & Remote -->
+                <details class="mobile-sub-accordion group/sub py-1">
+                  <summary
+                    class="flex items-center justify-between py-2 text-sm font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+                  >
+                    <span class="inline-flex items-center gap-2">
+                      <span class="text-secondary font-bold text-sm">&#x21B3;</span>
+                      <span>Manaslu & Remote</span>
+                    </span>
+                    <svg
+                      class="w-3.5 h-3.5 text-slate-700 transition-transform duration-200 group-open/sub:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="mobile-accordion-content">
+                    <div class="mobile-accordion-inner pl-6 py-1 space-y-1">
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Manaslu Circuit Trek</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Upper Dolpo Wilderness</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Kanchenjunga Circuit</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Tsum Valley & Manaslu Trek</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Rara Lake Discovery Trek</span>
+                      </a>
+                    </div>
+                  </div>
+                </details>
+
+                <!-- Region 5: Short & Scenic Treks -->
+                <details class="mobile-sub-accordion group/sub py-1">
+                  <summary
+                    class="flex items-center justify-between py-2 text-sm font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+                  >
+                    <span class="inline-flex items-center gap-2">
+                      <span class="text-secondary font-bold text-sm">&#x21B3;</span>
+                      <span>Short & Scenic Treks</span>
+                    </span>
+                    <svg
+                      class="w-3.5 h-3.5 text-slate-700 transition-transform duration-200 group-open/sub:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </summary>
+                  <div class="mobile-accordion-content">
+                    <div class="mobile-accordion-inner pl-6 py-1 space-y-1">
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Poon Hill Sunrise 4-Day</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Kathmandu Valley Rim</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Balthali Village Heritage</span>
+                      </a>
+                      <a
+                        href="#packages"
+                        class="mobile-nav-link flex items-center gap-2 py-1.5 text-[13px] font-semibold text-slate-800 hover:text-primary transition-colors"
+                      >
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary/80 flex-shrink-0"></span>
+                        <span>Pikey Peak Everest View</span>
+                      </a>
+                    </div>
+                  </div>
+                </details>
+
+                <!-- View All Link -->
+                <div class="pt-2 pl-2">
+                  <a
+                    href="#packages"
+                    class="mobile-nav-link inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors"
+                  >
+                    <span>Explore All Nepal Packages &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 3. Tibet (Dropdown Accordion) -->
+          <details class="mobile-top-accordion group py-1.5">
+            <summary
+              class="flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+            >
+              <span>Tibet</span>
+              <svg
+                class="w-4 h-4 text-slate-800 transition-transform duration-250 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="mobile-accordion-content">
+              <div class="mobile-accordion-inner pl-3 pt-1 pb-2 space-y-1">
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Lhasa Cultural Tour</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Everest Base Camp Tibet</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Mt. Kailash Pilgrimage</span>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- 4. Bhutan (Dropdown Accordion) -->
+          <details class="mobile-top-accordion group py-1.5">
+            <summary
+              class="flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+            >
+              <span>Bhutan</span>
+              <svg
+                class="w-4 h-4 text-slate-800 transition-transform duration-250 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="mobile-accordion-content">
+              <div class="mobile-accordion-inner pl-3 pt-1 pb-2 space-y-1">
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Bhutan Cultural Highlights</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Druk Path Trek</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Tiger's Nest Experience</span>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- 5. Travel Guides (Dropdown Accordion) -->
+          <details class="mobile-top-accordion group py-1.5">
+            <summary
+              class="flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+            >
+              <span>Travel Guides</span>
+              <svg
+                class="w-4 h-4 text-slate-800 transition-transform duration-250 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="mobile-accordion-content">
+              <div class="mobile-accordion-inner pl-3 pt-1 pb-2 space-y-1">
+                <a
+                  href="#blog"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Nepal Visa & Entry Info</span>
+                </a>
+                <a
+                  href="#blog"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Best Time to Visit</span>
+                </a>
+                <a
+                  href="#blog"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Trekking Packing List</span>
+                </a>
+                <a
+                  href="#blog"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Altitude Sickness Guide</span>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- 6. Company (Dropdown Accordion) -->
+          <details class="mobile-top-accordion group py-1.5">
+            <summary
+              class="flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary cursor-pointer transition-colors list-none"
+            >
+              <span>Company</span>
+              <svg
+                class="w-4 h-4 text-slate-800 transition-transform duration-250 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="mobile-accordion-content">
+              <div class="mobile-accordion-inner pl-3 pt-1 pb-2 space-y-1">
+                <a
+                  href="#our-story"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>About Us</span>
+                </a>
+                <a
+                  href="#testimonials"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Guest Reviews & Ratings</span>
+                </a>
+                <a
+                  href="#packages"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Our Expert Guides</span>
+                </a>
+                <a
+                  href="#contact"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>Booking Terms & Policies</span>
+                </a>
+                <a
+                  href="#contact"
+                  class="mobile-nav-link flex items-center gap-2 py-2 text-sm font-semibold text-slate-800 hover:text-primary transition-colors"
+                >
+                  <span class="text-secondary font-bold text-xs">&rarr;</span>
+                  <span>FAQs</span>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- 7. Blog -->
+          <div class="py-1.5">
+            <a
+              href="#blog"
+              class="mobile-nav-link flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary transition-colors"
+            >
+              <span>Blog</span>
+              <span class="text-xs font-bold text-slate-900">&rarr;</span>
+            </a>
+          </div>
+
+          <!-- 8. Contact Us -->
+          <div class="py-1.5">
+            <a
+              href="#contact"
+              class="mobile-nav-link flex items-center justify-between py-2.5 text-[15px] font-bold text-slate-900 hover:text-primary transition-colors"
+            >
+              <span>Contact Us</span>
+              <span class="text-xs font-bold text-slate-900">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Drawer Footer: Quick Contact & WhatsApp -->
+        <div class="p-4 border-t border-slate-100 bg-white space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-900"
+              >Need Immediate Help?</span
+            >
+            <span
+              class="text-xs font-extrabold text-emerald-600 flex items-center gap-1"
+            >
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+              ></span>
+              Online 24/7
+            </span>
+          </div>
+          <a
+            href="https://wa.me/9779851025658"
+            target="_blank"
+            class="flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg font-bold text-xs shadow-sm transition-colors"
+          >
+            <svg class="w-4 h-4 fill-current">
+              <use href="src/icons.svg#icon-whatsapp"></use>
+            </svg>
+            <span>WhatsApp Direct +977 9851025658</span>
+          </a>
+        </div>
+      </aside>
+      </nav>
+      </div><!-- /#header-main-wrapper -->
     </header>
 
     <!-- Floating WhatsApp Button (Desktop) — consolidated, only one floating CTA -->
@@ -782,14 +1779,14 @@
         />
       </svg>
     </a>
-    <!-- Hero Section: Premium Cinematic Slider -->
+    <!-- Hero Section: Premium Cinematic Slider (Dynamic Viewport Height dvh) -->
     <section
       id="home"
-      class="hero-swiper swiper relative min-h-screen overflow-hidden"
+      class="hero-swiper swiper relative h-[100dvh] min-h-[100dvh] overflow-hidden"
     >
       <div class="swiper-wrapper">
         <!-- Slide 1: Everest -->
-        <div class="swiper-slide relative min-h-screen overflow-hidden">
+        <div class="swiper-slide relative h-[100dvh] min-h-[100dvh] overflow-hidden">
           <div class="absolute inset-0">
             <img
               src="https://i.pinimg.com/1200x/01/98/a3/0198a36c5d3d78a722dd0915a5f40e2f.jpg"
@@ -798,16 +1795,103 @@
               alt="Everest Expedition"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"
+              class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"
             ></div>
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
             ></div>
           </div>
           <div
-            class="relative z-10 max-w-7xl mx-auto px-6 py-32 md:py-0 md:min-h-screen flex items-center"
+            class="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-24 md:py-0 h-full min-h-[100dvh] flex items-center"
           >
             <div class="max-w-2xl">
+              <!-- Nepali Wind-Fluttering Prayer Flags Garland (Pure Flags, No Text) -->
+              <div class="hero-subtitle mb-6 sm:mb-8 select-none flex items-center">
+                <div class="flex items-start gap-1 relative pt-1.5 pb-1">
+                  <!-- Rustic Cord Line -->
+                  <div
+                    class="absolute top-1.5 -left-2 -right-2 h-[1.5px] bg-white/60 shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
+                  ></div>
+                  <!-- Set 1 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -4deg; animation-delay: 0s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 3deg; animation-delay: 0.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 0.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 4deg; animation-delay: 0.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -1deg; animation-delay: 0.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                  <!-- Set 2 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -3deg; animation-delay: 1s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 2deg; animation-delay: 1.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -4deg; animation-delay: 1.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 3deg; animation-delay: 1.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 1.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                  <!-- Set 3 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 2s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 4deg; animation-delay: 2.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -3deg; animation-delay: 2.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 2deg; animation-delay: 2.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -1deg; animation-delay: 2.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                </div>
+              </div>
               <h1
                 class="hero-title premium-text-shadow font-['Manrope'] text-5xl md:text-7xl font-bold text-white leading-tight mb-4"
               >
@@ -815,20 +1899,21 @@
                   ><span class="hero-title-line">Discover the</span></span
                 >
                 <span class="line-mask"
-                  ><span class="hero-title-line">Himalayas</span></span
+                  ><span class="hero-title-line text-[#FF7A59]">Himalayas</span></span
                 >
               </h1>
               <p
-                class="hero-description text-white/95 text-lg leading-relaxed mb-8 max-w-xl"
+                class="hero-description text-white/95 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
               >
                 Experience the breathtaking beauty of Nepal's majestic
                 mountains. From the legendary Everest Base Camp to serene
                 Annapurna trails, embark on a journey that will transform your
                 soul.
               </p>
-              <div class="hero-buttons flex flex-wrap gap-4 mb-12">
-                <button
-                  class="btn-premium-fill group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer"
+              <div class="hero-buttons flex flex-wrap gap-4 mb-8 sm:mb-12">
+                <a
+                  href="#packages"
+                  class="btn-premium-orange-fill group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <span>Explore Treks</span>
                   <svg
@@ -844,8 +1929,9 @@
                       d="M17 8l4 4m0 0l-4 4m4-4H3"
                     />
                   </svg>
-                </button>
-                <button
+                </a>
+                <a
+                  href="#our-story"
                   class="btn-premium-fill-outline group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer"
                 >
                   <span>Learn More</span>
@@ -862,15 +1948,14 @@
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </button>
+                </a>
               </div>
-              <!-- Stats removed -->
             </div>
           </div>
         </div>
 
         <!-- Slide 2: Annapurna -->
-        <div class="swiper-slide relative min-h-screen overflow-hidden">
+        <div class="swiper-slide relative h-[100dvh] min-h-[100dvh] overflow-hidden">
           <div class="absolute inset-0">
             <img
               src="https://i.pinimg.com/1200x/47/da/2d/47da2d09a9bb2394dd764adc789ab193.jpg"
@@ -879,16 +1964,103 @@
               alt="Annapurna Sanctuary"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"
+              class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"
             ></div>
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
             ></div>
           </div>
           <div
-            class="relative z-10 max-w-7xl mx-auto px-6 py-32 md:py-0 md:min-h-screen flex items-center"
+            class="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-24 md:py-0 h-full min-h-[100dvh] flex items-center"
           >
             <div class="max-w-2xl">
+              <!-- Nepali Wind-Fluttering Prayer Flags Garland (Pure Flags, No Text) -->
+              <div class="hero-subtitle mb-6 sm:mb-8 select-none flex items-center">
+                <div class="flex items-start gap-1 relative pt-1.5 pb-1">
+                  <!-- Rustic Cord Line -->
+                  <div
+                    class="absolute top-1.5 -left-2 -right-2 h-[1.5px] bg-white/60 shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
+                  ></div>
+                  <!-- Set 1 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -4deg; animation-delay: 0s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 3deg; animation-delay: 0.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 0.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 4deg; animation-delay: 0.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -1deg; animation-delay: 0.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                  <!-- Set 2 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -3deg; animation-delay: 1s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 2deg; animation-delay: 1.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -4deg; animation-delay: 1.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 3deg; animation-delay: 1.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 1.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                  <!-- Set 3 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 2s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 4deg; animation-delay: 2.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -3deg; animation-delay: 2.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 2deg; animation-delay: 2.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -1deg; animation-delay: 2.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                </div>
+              </div>
               <h1
                 class="hero-title premium-text-shadow font-['Manrope'] text-5xl md:text-7xl font-bold text-white leading-tight mb-4"
               >
@@ -896,19 +2068,20 @@
                   ><span class="hero-title-line">Annapurna</span></span
                 >
                 <span class="line-mask"
-                  ><span class="hero-title-line">Sanctuary</span></span
+                  ><span class="hero-title-line text-[#FF7A59]">Sanctuary</span></span
                 >
               </h1>
               <p
-                class="hero-description text-white/95 text-lg leading-relaxed mb-8 max-w-xl"
+                class="hero-description text-white/95 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
               >
                 Trek through lush rhododendron forests to the base of the
                 world's 10th highest peak. A journey of a lifetime through
                 Nepal's most beloved trail.
               </p>
-              <div class="hero-buttons flex flex-wrap gap-4 mb-12">
-                <button
-                  class="btn-premium-fill group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer"
+              <div class="hero-buttons flex flex-wrap gap-4 mb-8 sm:mb-12">
+                <a
+                  href="#packages"
+                  class="btn-premium-orange-fill group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <span>View Packages</span>
                   <svg
@@ -924,8 +2097,9 @@
                       d="M17 8l4 4m0 0l-4 4m4-4H3"
                     />
                   </svg>
-                </button>
-                <button
+                </a>
+                <a
+                  href="#why-us"
                   class="btn-premium-fill-outline group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer"
                 >
                   <span>Learn More</span>
@@ -942,15 +2116,14 @@
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </button>
+                </a>
               </div>
-              <!-- Stats removed -->
             </div>
           </div>
         </div>
 
         <!-- Slide 3: Langtang -->
-        <div class="swiper-slide relative min-h-screen overflow-hidden">
+        <div class="swiper-slide relative h-[100dvh] min-h-[100dvh] overflow-hidden">
           <div class="absolute inset-0">
             <img
               src="https://i.pinimg.com/1200x/4d/2b/ec/4d2bec793ea91c35091b4813b87c6abf.jpg"
@@ -959,16 +2132,103 @@
               alt="Langtang Valley"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"
+              class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"
             ></div>
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
             ></div>
           </div>
           <div
-            class="relative z-10 max-w-7xl mx-auto px-6 py-32 md:py-0 md:min-h-screen flex items-center"
+            class="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-24 md:py-0 h-full min-h-[100dvh] flex items-center"
           >
             <div class="max-w-2xl">
+              <!-- Nepali Wind-Fluttering Prayer Flags Garland (Pure Flags, No Text) -->
+              <div class="hero-subtitle mb-6 sm:mb-8 select-none flex items-center">
+                <div class="flex items-start gap-1 relative pt-1.5 pb-1">
+                  <!-- Rustic Cord Line -->
+                  <div
+                    class="absolute top-1.5 -left-2 -right-2 h-[1.5px] bg-white/60 shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
+                  ></div>
+                  <!-- Set 1 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -4deg; animation-delay: 0s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 3deg; animation-delay: 0.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 0.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 4deg; animation-delay: 0.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -1deg; animation-delay: 0.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                  <!-- Set 2 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -3deg; animation-delay: 1s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 2deg; animation-delay: 1.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -4deg; animation-delay: 1.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 3deg; animation-delay: 1.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 1.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                  <!-- Set 3 -->
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#0066CC] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -2deg; animation-delay: 2s;"
+                    title="Blue - Space"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-white rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 4deg; animation-delay: 2.2s;"
+                    title="White - Air"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#D92525] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -3deg; animation-delay: 2.4s;"
+                    title="Red - Fire"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#10873E] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: 2deg; animation-delay: 2.6s;"
+                    title="Green - Water"
+                  ></span>
+                  <span
+                    class="prayer-flag-item w-3.5 h-4.5 sm:w-4 sm:h-5 bg-[#F2B705] rounded-b-[2px] shadow-[0_4px_8px_rgba(0,0,0,0.5)] border-t border-black/10 inline-block"
+                    style="--rot-base: -1deg; animation-delay: 2.8s;"
+                    title="Yellow - Earth"
+                  ></span>
+                </div>
+              </div>
               <h1
                 class="hero-title premium-text-shadow font-['Manrope'] text-5xl md:text-7xl font-bold text-white leading-tight mb-4"
               >
@@ -976,19 +2236,20 @@
                   ><span class="hero-title-line">Langtang</span></span
                 >
                 <span class="line-mask"
-                  ><span class="hero-title-line">Valley</span></span
+                  ><span class="hero-title-line text-[#FF7A59]">Valley</span></span
                 >
               </h1>
               <p
-                class="hero-description text-white/95 text-lg leading-relaxed mb-8 max-w-xl"
+                class="hero-description text-white/95 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
               >
                 Experience remote Tamang villages, ancient monasteries, and
                 breathtaking alpine landscapes on one of Nepal's most culturally
                 rich treks.
               </p>
-              <div class="hero-buttons flex flex-wrap gap-4 mb-12">
-                <button
-                  class="btn-premium-fill group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer"
+              <div class="hero-buttons flex flex-wrap gap-4 mb-8 sm:mb-12">
+                <a
+                  href="#packages"
+                  class="btn-premium-orange-fill group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <span>Discover Treks</span>
                   <svg
@@ -1004,8 +2265,9 @@
                       d="M17 8l4 4m0 0l-4 4m4-4H3"
                     />
                   </svg>
-                </button>
-                <button
+                </a>
+                <a
+                  href="#contact"
                   class="btn-premium-fill-outline group px-6 py-3 rounded-md font-semibold text-sm flex items-center gap-2 cursor-pointer"
                 >
                   <span>Learn More</span>
@@ -1022,52 +2284,51 @@
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </button>
+                </a>
               </div>
-              <!-- Stats removed -->
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Custom Premium Minimalist Navigation (Non-Boxed, direct overlay) -->
+      <!-- Custom Premium Minimalist Navigation (Non-Boxed, Direct Clean Overlay) -->
       <div
-        class="absolute bottom-12 right-6 md:right-12 z-30 flex items-center gap-8 text-white select-none"
+        class="absolute bottom-8 right-6 md:right-12 z-30 flex items-center gap-5 md:gap-7 text-white select-none"
       >
         <!-- Fractional Page Numbers -->
-        <div class="flex items-center gap-2 font-['Manrope'] text-sm">
+        <div class="flex items-center gap-1.5 font-['Manrope'] text-sm">
           <span
             id="hero-active-num"
-            class="font-extrabold text-secondary tracking-wider text-base"
+            class="font-black text-[#E8604C] tracking-wider text-base md:text-lg"
             >01</span
           >
-          <span class="text-white/25 text-xs">/</span>
-          <span class="text-white/55 font-semibold text-xs">03</span>
+          <span class="text-white/30 text-xs">/</span>
+          <span class="text-white/60 font-semibold text-xs">03</span>
         </div>
 
         <!-- Single Horizontal Progress Bar -->
         <div
-          class="w-24 h-[2px] bg-white/20 overflow-hidden relative hidden sm:block"
+          class="w-16 md:w-24 h-[2.5px] bg-white/20 overflow-hidden relative rounded-full"
         >
           <div
             id="hero-single-progress"
-            class="absolute left-0 top-0 h-full w-0 bg-secondary transition-all"
+            class="absolute left-0 top-0 h-full w-0 bg-gradient-to-r from-[#E8604C] to-[#FF7A59] rounded-full transition-all shadow-[0_0_8px_rgba(232,96,76,0.8)]"
           ></div>
         </div>
 
-        <!-- Arrow Buttons -->
-        <div class="flex items-center gap-3">
+        <!-- Arrow Buttons (Clean Minimalist Frosted Circles) -->
+        <div class="flex items-center gap-2.5">
           <!-- Prev Button -->
           <button
             id="hero-prev"
-            class="w-10 h-10 rounded-md border border-white/20 hover:border-secondary hover:text-secondary hover:bg-white/5 flex items-center justify-center transition-all duration-300 cursor-pointer"
+            class="w-10 h-10 rounded-full border border-white/30 hover:border-[#E8604C] hover:text-[#E8604C] hover:bg-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-xs shadow-sm"
             aria-label="Previous Slide"
           >
             <svg
               class="w-4 h-4"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="2.5"
               viewBox="0 0 24 24"
             >
               <path
@@ -1080,14 +2341,14 @@
           <!-- Next Button -->
           <button
             id="hero-next"
-            class="w-10 h-10 rounded-md border border-white/20 hover:border-secondary hover:text-secondary hover:bg-white/5 flex items-center justify-center transition-all duration-300 cursor-pointer"
+            class="w-10 h-10 rounded-full border border-white/30 hover:border-[#E8604C] hover:text-[#E8604C] hover:bg-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer backdrop-blur-xs shadow-sm"
             aria-label="Next Slide"
           >
             <svg
               class="w-4 h-4"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="2.5"
               viewBox="0 0 24 24"
             >
               <path

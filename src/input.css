@@ -2,232 +2,506 @@
 @source "../public";
 
 @theme {
-    --color-primary: #003153;
-    --color-secondary: #ff5f1f;
+  --color-primary: #003153;
+  --color-secondary: #ff5f1f;
 }
 
 /* Style mobile details summaries to remove default triangles */
 details summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 details summary {
-    list-style: none;
+  list-style: none;
 }
 
-/* ── Split-Screen Hero & Search Widget ── */
+/* ── Hero Swiper (Dynamic Viewport Height dvh) ── */
 .hero-swiper {
-    height: calc(100vh - 120px) !important;
-    min-height: 680px !important;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
-@media (max-width: 1023px) {
-    .hero-swiper {
-        height: auto !important;
-        min-height: calc(100vh - 80px) !important;
-    }
+.hero-swiper .swiper-slide {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* Floating Search Widget Styling */
 .trip-search-widget {
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 25px 50px -12px rgba(0, 49, 83, 0.25), 0 12px 24px -12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 49, 83, 0.25),
+    0 12px 24px -12px rgba(0, 0, 0, 0.1);
 }
 
 .widget-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
-    background-position: right 1rem center;
-    background-repeat: no-repeat;
-    background-size: 1.25rem;
-    padding-right: 2.5rem;
-    transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+  transition: all 0.3s ease;
 }
 
 .widget-select:focus {
-    border-color: var(--color-secondary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 95, 31, 0.15);
+  border-color: var(--color-secondary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 95, 31, 0.15);
 }
 
 /* Custom Utilities for Premium Hero Slider */
 .line-mask {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
 }
 
 .hero-title-line {
-    display: block;
+  display: block;
 }
 
 .ken-burns-bg {
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .custom-nav-btn {
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .custom-nav-btn:hover .nav-arrow {
-    transform: translateX(3px);
+  transform: translateX(3px);
 }
 
 .custom-nav-btn-prev:hover .nav-arrow {
-    transform: translateX(-3px);
+  transform: translateX(-3px);
 }
 
 /* Synced Thumbs Slider Styles */
 .hero-thumb-card {
-    opacity: 0.7;
-    transform: scale(0.97);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.7;
+  transform: scale(0.97);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .swiper-slide-thumb-active .hero-thumb-card {
-    opacity: 1;
-    transform: scale(1.03);
-    background-color: rgba(255, 255, 255, 0.12);
-    border-color: rgba(232, 96, 76, 0.6);
-    box-shadow: 0 20px 30px -10px rgba(232, 96, 76, 0.25), 0 10px 20px -10px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transform: scale(1.03);
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(232, 96, 76, 0.6);
+  box-shadow:
+    0 20px 30px -10px rgba(232, 96, 76, 0.25),
+    0 10px 20px -10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-attribute-card {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-attribute-card:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .premium-text-shadow {
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.95);
+  text-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.9),
+    0 4px 8px rgba(0, 0, 0, 0.95);
 }
 
 .btn-premium-fill {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-primary, #003153);
-    color: #ffffff !important;
-    border: 1px solid var(--color-primary, #003153);
-    transition: color 0.65s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-primary, #003153);
+  color: #ffffff !important;
+  border: 1px solid var(--color-primary, #003153);
+  transition:
+    color 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .btn-premium-fill::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-secondary, #ff5f1f);
-    z-index: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-secondary, #ff5f1f);
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .btn-premium-fill:hover {
-    border-color: var(--color-secondary, #ff5f1f);
-    color: #ffffff !important;
-    box-shadow: 0 12px 24px -6px rgba(255, 95, 31, 0.3);
+  border-color: var(--color-secondary, #ff5f1f);
+  color: #ffffff !important;
+  box-shadow: 0 12px 24px -6px rgba(255, 95, 31, 0.3);
 }
 
 .btn-premium-fill:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .btn-premium-fill > * {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-premium-orange-fill {
+  position: relative;
+  overflow: hidden;
+  background-color: #E8604C;
+  color: #ffffff !important;
+  border: 1px solid #E8604C;
+  transition:
+    color 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.btn-premium-orange-fill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #003153;
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-premium-orange-fill:hover {
+  border-color: #003153;
+  color: #ffffff !important;
+  box-shadow: 0 12px 24px -6px rgba(0, 49, 83, 0.4);
+}
+
+.btn-premium-orange-fill:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-premium-orange-fill > * {
+  position: relative;
+  z-index: 10;
+}
+
+/* Authentic Himalayan Prayer Flags Wind Flutter Animation */
+@keyframes prayerFlagFlutter {
+  0%, 100% {
+    transform: rotate(var(--rot-base, 0deg)) skewX(0deg) scaleY(1);
+  }
+  20% {
+    transform: rotate(calc(var(--rot-base, 0deg) + 9deg)) skewX(-6deg) scaleY(0.93);
+  }
+  45% {
+    transform: rotate(calc(var(--rot-base, 0deg) - 7deg)) skewX(5deg) scaleY(1.05);
+  }
+  70% {
+    transform: rotate(calc(var(--rot-base, 0deg) + 6deg)) skewX(-4deg) scaleY(0.96);
+  }
+}
+
+.prayer-flag-item {
+  transform-origin: top center;
+  animation: prayerFlagFlutter 3s ease-in-out infinite;
+  will-change: transform;
 }
 
 .btn-premium-fill-outline {
-    position: relative;
-    overflow: hidden;
-    background-color: transparent;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: color 0.65s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition:
+    color 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.65s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .btn-premium-fill-outline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.15); /* Soft white glass fill */
-    z-index: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15); /* Soft white glass fill */
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .btn-premium-fill-outline:hover {
-    border-color: #ffffff;
-    box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.1);
 }
 
 .btn-premium-fill-outline:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .btn-premium-fill-outline > * {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Dropdowns: cssarrowplease Triangle Pin & translateY(12px) Slide-Down Animation ── */
+.nav-chevron {
+  transition:
+    transform 0.25s ease-in-out,
+    color 0.2s ease;
+}
+
+.group:hover .nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* Seamless hover bridge so mouse moving from link to dropdown never gets lost */
+.group::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: transparent;
+  z-index: 45;
 }
 
 .nav-dropdown {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.18s linear;
+  will-change: opacity, transform;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 49, 83, 0.12),
+    0 4px 10px -2px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  z-index: 50;
+  backface-visibility: hidden;
 }
 
+/* Triangle via cssarrowplease.com for standard dropdowns */
+.nav-dropdown:after,
+.nav-dropdown:before {
+  bottom: 100%;
+  left: 28px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.nav-dropdown:after {
+  border-bottom-color: #ffffff;
+  border-width: 8px;
+  margin-left: -8px;
+  z-index: 2;
+}
+
+.nav-dropdown:before {
+  border-bottom-color: #e2e8f0;
+  border-width: 9px;
+  margin-left: -9px;
+  z-index: 1;
+}
+
+/* Open / Active State on hover: translateY(12px) */
 .group:hover .nav-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 12px, 0);
+  pointer-events: auto;
+}
+
+/* ── Megamenu Styling (Trekking in Nepal) ── */
+.nav-dropdown-mega {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.2s linear;
+  will-change: opacity, transform;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow:
+    0 14px 35px -5px rgba(0, 49, 83, 0.14),
+    0 4px 10px -2px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  z-index: 50;
+  backface-visibility: hidden;
+}
+
+/* Triangle via cssarrowplease.com for Megamenu */
+.nav-dropdown-mega:after,
+.nav-dropdown-mega:before {
+  bottom: 100%;
+  left: 390px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.nav-dropdown-mega:after {
+  border-bottom-color: #ffffff;
+  border-width: 8px;
+  margin-left: -8px;
+  z-index: 2;
+}
+
+.nav-dropdown-mega:before {
+  border-bottom-color: #e2e8f0;
+  border-width: 9px;
+  margin-left: -9px;
+  z-index: 1;
+}
+
+.group:hover .nav-dropdown-mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 12px, 0);
+  pointer-events: auto;
+}
+
+/* Region Tab button active states */
+.region-tab-btn {
+  border: 1px solid transparent;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+  border-radius: 8px;
+}
+
+.region-tab-btn.active {
+  background-color: #ffffff !important;
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+  box-shadow:
+    0 4px 14px -2px rgba(0, 49, 83, 0.1),
+    0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.region-tab-btn.active .tab-chevron {
+  color: var(--color-secondary);
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Smooth Drawer Accordion Animations */
+.mobile-accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.22s ease;
+  opacity: 0;
+}
+
+details[open] > .mobile-accordion-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.mobile-accordion-inner {
+  overflow: hidden;
+}
+
+/* Dropdown items styling & hover effect */
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 16px;
+  font-size: 14px;
+  color: #334155;
+  font-weight: 600;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 2px 4px;
+}
+
+.nav-dropdown a:hover {
+  color: var(--color-primary);
+  background-color: #f8fafc;
+  transform: translateX(4px);
 }
 
 @keyframes float-subtle {
-    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
-    50% { transform: translateY(-5px) rotate(0.5deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
 }
 
 @keyframes wave-wind {
-    0%, 100% {
-        transform: translateY(0) rotate(1deg) skewY(1deg) scaleY(1);
-    }
-    20% {
-        transform: translateY(-2px) rotate(-1.5deg) skewY(-1deg) scaleY(0.98);
-    }
-    40% {
-        transform: translateY(1px) rotate(1deg) skewY(0.5deg) scaleY(1.02);
-    }
-    60% {
-        transform: translateY(-3px) rotate(-1deg) skewY(-1.5deg) scaleY(0.99);
-    }
-    80% {
-        transform: translateY(0) rotate(1.5deg) skewY(1deg) scaleY(1.01);
-    }
+  0%,
+  100% {
+    transform: translateY(0) rotate(1deg) skewY(1deg) scaleY(1);
+  }
+  20% {
+    transform: translateY(-2px) rotate(-1.5deg) skewY(-1deg) scaleY(0.98);
+  }
+  40% {
+    transform: translateY(1px) rotate(1deg) skewY(0.5deg) scaleY(1.02);
+  }
+  60% {
+    transform: translateY(-3px) rotate(-1deg) skewY(-1.5deg) scaleY(0.99);
+  }
+  80% {
+    transform: translateY(0) rotate(1.5deg) skewY(1deg) scaleY(1.01);
+  }
 }
 
 .animate-bounce-subtle {
-    animation: float-subtle 4s ease-in-out infinite;
+  animation: float-subtle 4s ease-in-out infinite;
 }
 
 .animate-wind-flag {
-    animation: wave-wind 2.8s ease-in-out infinite;
-    transform-origin: right center;
+  animation: wave-wind 2.8s ease-in-out infinite;
+  transform-origin: right center;
 }
 
 /* Starburst Ribbon Badge */
@@ -236,8 +510,8 @@ details summary {
   font-weight: 800;
   color: #ffffff !important;
   --c: var(--color-secondary, #ff5f1f);
-  
-  padding: .6em .85em;
+
+  padding: 0.6em 0.85em;
   aspect-ratio: 1;
   display: grid;
   place-content: center;
@@ -253,7 +527,18 @@ details summary {
   inset: 45% 0 auto;
   aspect-ratio: 1;
   background: color-mix(in srgb, var(--c), #000 35%);
-  clip-path: polygon(calc(100%/3) 0,calc(200%/3) 0,100% 90%,80% 85%,calc(200%/3) 100%,calc(100%/3) 0,calc(200%/3) 0,calc(100%/3) 100%,20% 85%,0 90%);
+  clip-path: polygon(
+    calc(100% / 3) 0,
+    calc(200% / 3) 0,
+    100% 90%,
+    80% 85%,
+    calc(200% / 3) 100%,
+    calc(100% / 3) 0,
+    calc(200% / 3) 0,
+    calc(100% / 3) 100%,
+    20% 85%,
+    0 90%
+  );
 }
 
 .ribbon:after {
@@ -261,13 +546,66 @@ details summary {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: radial-gradient(35% 35%,#0000 96%,#0003 97% 99%,#0000) var(--c);
-  clip-path: polygon(100.00% 50.00%,89.66% 55.22%,98.30% 62.94%,86.96% 65.31%,93.30% 75.00%,81.73% 74.35%,85.36% 85.36%,74.35% 81.73%,75.00% 93.30%,65.31% 86.96%,62.94% 98.30%,55.22% 89.66%,50.00% 100.00%,44.78% 89.66%,37.06% 98.30%,34.69% 86.96%,25.00% 93.30%,25.65% 81.73%,14.64% 85.36%,18.27% 74.35%,6.70% 75.00%,13.04% 65.31%,1.70% 62.94%,10.34% 55.22%,0.00% 50.00%,10.34% 44.78%,1.70% 37.06%,13.04% 34.69%,6.70% 25.00%,18.27% 25.65%,14.64% 14.64%,25.65% 18.27%,25.00% 6.70%,34.69% 13.04%,37.06% 1.70%,44.78% 10.34%,50.00% 0.00%,55.22% 10.34%,62.94% 1.70%,65.31% 13.04%,75.00% 6.70%,74.35% 18.27%,85.36% 14.64%,81.73% 25.65%,93.30% 25.00%,86.96% 34.69%,98.30% 37.06%,89.66% 44.78%);
+  background: radial-gradient(35% 35%, #0000 96%, #0003 97% 99%, #0000) var(--c);
+  clip-path: polygon(
+    100% 50%,
+    89.66% 55.22%,
+    98.3% 62.94%,
+    86.96% 65.31%,
+    93.3% 75%,
+    81.73% 74.35%,
+    85.36% 85.36%,
+    74.35% 81.73%,
+    75% 93.3%,
+    65.31% 86.96%,
+    62.94% 98.3%,
+    55.22% 89.66%,
+    50% 100%,
+    44.78% 89.66%,
+    37.06% 98.3%,
+    34.69% 86.96%,
+    25% 93.3%,
+    25.65% 81.73%,
+    14.64% 85.36%,
+    18.27% 74.35%,
+    6.7% 75%,
+    13.04% 65.31%,
+    1.7% 62.94%,
+    10.34% 55.22%,
+    0% 50%,
+    10.34% 44.78%,
+    1.7% 37.06%,
+    13.04% 34.69%,
+    6.7% 25%,
+    18.27% 25.65%,
+    14.64% 14.64%,
+    25.65% 18.27%,
+    25% 6.7%,
+    34.69% 13.04%,
+    37.06% 1.7%,
+    44.78% 10.34%,
+    50% 0%,
+    55.22% 10.34%,
+    62.94% 1.7%,
+    65.31% 13.04%,
+    75% 6.7%,
+    74.35% 18.27%,
+    85.36% 14.64%,
+    81.73% 25.65%,
+    93.3% 25%,
+    86.96% 34.69%,
+    98.3% 37.06%,
+    89.66% 44.78%
+  );
 }
 
 /* ── Destinations Expanding Flex Columns ── */
 .dest-expand-card {
-  transition: flex 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    flex 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 @media (min-width: 768px) {
@@ -319,8 +657,14 @@ details summary {
 
 /* ── Pure Scenic Parallax Mountain Vista ── */
 .parallax-cta-section {
-  background-image: linear-gradient(to bottom, rgba(10, 15, 30, 0.55), rgba(2, 6, 23, 0.45), rgba(10, 15, 30, 0.70)),
-                    url('https://images.unsplash.com/photo-1533130061792-64b345e4a833?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0');
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(10, 15, 30, 0.55),
+      rgba(2, 6, 23, 0.45),
+      rgba(10, 15, 30, 0.7)
+    ),
+    url("https://images.unsplash.com/photo-1533130061792-64b345e4a833?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -335,12 +679,17 @@ details summary {
 }
 
 .package-slide-card {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
 }
 
 .package-slide-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 25px 45px -12px rgba(0, 49, 83, 0.14), 0 10px 20px -8px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 25px 45px -12px rgba(0, 49, 83, 0.14),
+    0 10px 20px -8px rgba(0, 0, 0, 0.06);
 }
 
 .package-slide-card .package-img {
@@ -357,7 +706,9 @@ details summary {
 }
 .trust-badge-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 35px -10px rgba(0, 49, 83, 0.12), 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 20px 35px -10px rgba(0, 49, 83, 0.12),
+    0 8px 16px -8px rgba(0, 0, 0, 0.06);
 }
 
 .review-filter-btn {
@@ -370,17 +721,24 @@ details summary {
   box-shadow: 0 4px 14px -2px rgba(0, 49, 83, 0.25);
 }
 
-.google-review-card, .tripadvisor-review-card {
+.google-review-card,
+.tripadvisor-review-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
 }
-.google-review-card:hover, .tripadvisor-review-card:hover {
+.google-review-card:hover,
+.tripadvisor-review-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 24px 45px -12px rgba(0, 49, 83, 0.12), 0 10px 20px -8px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 24px 45px -12px rgba(0, 49, 83, 0.12),
+    0 10px 20px -8px rgba(0, 0, 0, 0.05);
 }
 
 .testimonials-swiper .swiper-slide {
@@ -420,7 +778,7 @@ details summary {
   transform: scale(1.08);
 }
 .review-photo-thumb::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.15);
@@ -479,13 +837,20 @@ details summary {
 /* ── Modern Elevated Blog Cards ── */
 .blog-card,
 .blog-elevated-card {
-  box-shadow: 0 10px 30px -8px rgba(0, 49, 83, 0.09), 0 4px 14px -4px rgba(0, 0, 0, 0.06);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+  box-shadow:
+    0 10px 30px -8px rgba(0, 49, 83, 0.09),
+    0 4px 14px -4px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
 }
 .blog-card:hover,
 .blog-elevated-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 28px 55px -12px rgba(0, 49, 83, 0.20), 0 14px 28px -8px rgba(0, 0, 0, 0.09);
+  box-shadow:
+    0 28px 55px -12px rgba(0, 49, 83, 0.2),
+    0 14px 28px -8px rgba(0, 0, 0, 0.09);
   border-color: #cbd5e1;
 }
 .blog-elevated-card .blog-thumb {
@@ -499,9 +864,9 @@ details summary {
   overflow: hidden;
   position: relative;
 }
-.shapedividers_com-353::before { 
-  content: '';
-  font-family: 'shape divider from ShapeDividers.com';
+.shapedividers_com-353::before {
+  content: "";
+  font-family: "shape divider from ShapeDividers.com";
   position: absolute;
   z-index: 3;
   pointer-events: none;
@@ -509,10 +874,10 @@ details summary {
   bottom: -0.1vw;
   left: -0.1vw;
   right: -0.1vw;
-  top: -0.1vw; 
+  top: -0.1vw;
   background-size: 100% 90px;
   background-position: 50% 0%;
-  background-image: url('data:image/svg+xml;charset=utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0.1 35.28 2.17" preserveAspectRatio="none"><path d="M0 1.85c2.56-.83 7.68-.3 11.79-.42 4.1-.12 6.86-.61 9.58-.28 2.73.33 5.61 1.17 8.61 1 3-.19 4.73-.82 5.3-.84V.1H0z" fill="%23ffffff"/></svg>'); 
+  background-image: url('data:image/svg+xml;charset=utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0.1 35.28 2.17" preserveAspectRatio="none"><path d="M0 1.85c2.56-.83 7.68-.3 11.79-.42 4.1-.12 6.86-.61 9.58-.28 2.73.33 5.61 1.17 8.61 1 3-.19 4.73-.82 5.3-.84V.1H0z" fill="%23ffffff"/></svg>');
 }
 
 @media (min-width: 2100px) {
@@ -520,5 +885,3 @@ details summary {
     background-size: 100% calc(2vw + 90px);
   }
 }
-
-

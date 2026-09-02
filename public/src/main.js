@@ -1,41 +1,106 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ── Header Sticky Nav ──────────────────────────────────────────────────────
+// ── Header Sticky Nav (High-Performance with rAF & State Caching) ───────────
 
 const nav = document.getElementById("main-nav");
 const topBar = document.getElementById("top-bar");
 const promoBar = document.getElementById("promo-bar");
 const stickyLogo = document.getElementById("sticky-logo");
 
-function handleNavSticky() {
-  const promoH = promoBar?.offsetHeight || 0;
-  const topH = topBar?.offsetHeight || 0;
+let isNavSticky = false;
+let scrollTicking = false;
+let currentActiveSection = "";
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+function updateStickyNav() {
+  if (!nav) return;
+  const promoH = promoBar ? promoBar.offsetHeight : 0;
+  const topH = topBar ? topBar.offsetHeight : 0;
   const stickyBreakpoint = promoH + topH;
-  const scrolled = window.scrollY > stickyBreakpoint;
+  const shouldBeSticky = window.scrollY > stickyBreakpoint;
 
-  nav.classList.toggle("fixed", scrolled);
-  nav.classList.toggle("top-0", scrolled);
-  nav.classList.toggle("left-0", scrolled);
-  nav.classList.toggle("right-0", scrolled);
-  nav.classList.toggle("shadow-md", scrolled);
-  nav.classList.toggle("z-50", scrolled);
+  if (shouldBeSticky !== isNavSticky) {
+    isNavSticky = shouldBeSticky;
+    nav.classList.toggle("fixed", isNavSticky);
+    nav.classList.toggle("top-0", isNavSticky);
+    nav.classList.toggle("left-0", isNavSticky);
+    nav.classList.toggle("right-0", isNavSticky);
+    nav.classList.toggle("shadow-md", isNavSticky);
+    nav.classList.toggle("z-50", isNavSticky);
 
-  document.body.style.paddingTop = scrolled ? nav.offsetHeight + "px" : "0";
+    document.body.style.paddingTop = isNavSticky
+      ? nav.offsetHeight + "px"
+      : "0";
 
-  if (stickyLogo) {
-    stickyLogo.classList.toggle("opacity-100", scrolled);
-    stickyLogo.classList.toggle("opacity-0", !scrolled);
-    stickyLogo.classList.toggle("pointer-events-auto", scrolled);
-    stickyLogo.classList.toggle("pointer-events-none", !scrolled);
+    if (stickyLogo) {
+      stickyLogo.classList.toggle("opacity-100", isNavSticky);
+      stickyLogo.classList.toggle("opacity-0", !isNavSticky);
+      stickyLogo.classList.toggle("pointer-events-auto", isNavSticky);
+      stickyLogo.classList.toggle("pointer-events-none", !isNavSticky);
+    }
   }
 }
 
-window.addEventListener("scroll", handleNavSticky, { passive: true });
+function updateActiveLink() {
+  if (sections.length === 0) return;
+  let current = "home";
+  const scrollPos = window.scrollY + 200;
+  sections.forEach((sec) => {
+    if (sec.offsetTop <= scrollPos) {
+      current = sec.id;
+    }
+  });
+  if (current !== currentActiveSection) {
+    currentActiveSection = current;
+    navLinks.forEach((link) => {
+      const isTarget = link.getAttribute("href") === "#" + current;
+      link.classList.toggle("text-primary", isTarget);
+      link.classList.toggle("text-slate-700", !isTarget);
+    });
+  }
+}
+
+const backToTopBtn = document.getElementById("back-to-top");
+
+function updateBackToTop() {
+  if (!backToTopBtn) return;
+  const show = window.scrollY > 400;
+  backToTopBtn.classList.toggle("opacity-100", show);
+  backToTopBtn.classList.toggle("visible", show);
+  backToTopBtn.classList.toggle("opacity-0", !show);
+  backToTopBtn.classList.toggle("invisible", !show);
+}
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function onScroll() {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      updateStickyNav();
+      updateActiveLink();
+      updateBackToTop();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
+updateStickyNav();
+updateActiveLink();
+updateBackToTop();
 
 // ── Promo Bar Dismiss ─────────────────────────────────────────────────────
 
 document.getElementById("promo-close")?.addEventListener("click", () => {
   const bar = document.getElementById("promo-bar");
+  if (!bar) return;
   bar.style.maxHeight = bar.offsetHeight + "px";
   requestAnimationFrame(() => {
     bar.style.transition = "max-height 0.4s ease, opacity 0.3s ease";
@@ -45,95 +110,86 @@ document.getElementById("promo-close")?.addEventListener("click", () => {
   });
 });
 
-// ── Mobile Menu Toggle (GSAP animation) ─────────────────────────────────
+// ── Mobile Off-Canvas Drawer (Left to Right Smooth Translation) ────────────
 
-const menuBtn = document.getElementById("mobile-menu-btn");
-const mobileMenu = document.getElementById("mobile-menu");
-let menuOpen = false;
-let menuTween = null;
+const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+const mobileDrawer = document.getElementById("mobile-drawer");
+const mobileDrawerBackdrop = document.getElementById("mobile-drawer-backdrop");
+const mobileDrawerClose = document.getElementById("mobile-drawer-close");
+const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
-function animateMobileMenu(open) {
-  if (menuTween) menuTween.kill();
-  if (open) {
-    mobileMenu.style.display = "block";
-    menuTween = gsap.to(mobileMenu, {
-      maxHeight: 400,
-      opacity: 1,
-      duration: 0.35,
-      ease: "power3.out",
-    });
-  } else {
-    menuTween = gsap.to(mobileMenu, {
-      maxHeight: 0,
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.in",
-      onComplete: () => {
-        mobileMenu.style.display = "";
-      },
-    });
+function openMobileDrawer() {
+  if (!mobileDrawer || !mobileDrawerBackdrop) return;
+  mobileDrawer.classList.remove("-translate-x-full");
+  mobileDrawer.classList.add("translate-x-0");
+  mobileDrawerBackdrop.classList.remove("opacity-0", "pointer-events-none");
+  mobileDrawerBackdrop.classList.add("opacity-100", "pointer-events-auto");
+  document.body.classList.add("overflow-hidden");
+}
+
+function closeMobileDrawer() {
+  if (!mobileDrawer || !mobileDrawerBackdrop) return;
+  mobileDrawer.classList.add("-translate-x-full");
+  mobileDrawer.classList.remove("translate-x-0");
+  mobileDrawerBackdrop.classList.add("opacity-0", "pointer-events-none");
+  mobileDrawerBackdrop.classList.remove("opacity-100", "pointer-events-auto");
+  document.body.classList.remove("overflow-hidden");
+}
+
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    openMobileDrawer();
+  });
+}
+
+if (mobileDrawerClose) {
+  mobileDrawerClose.addEventListener("click", closeMobileDrawer);
+}
+
+if (mobileDrawerBackdrop) {
+  mobileDrawerBackdrop.addEventListener("click", closeMobileDrawer);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeMobileDrawer();
   }
-}
+});
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener("click", () => {
-    menuOpen = !menuOpen;
-    animateMobileMenu(menuOpen);
+mobileNavLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    closeMobileDrawer();
   });
+});
 
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menuOpen = false;
-      animateMobileMenu(false);
-    });
-  });
-}
+// ── Mobile Accordion Mutual Exclusion (One closes when another opens) ──────
 
-// ── Back to Top ──────────────────────────────────────────────────────────
-
-const btt = document.getElementById("back-to-top");
-if (btt) {
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (window.scrollY > 400) {
-        btt.classList.remove("opacity-0", "invisible");
-        btt.classList.add("opacity-100", "visible");
-      } else {
-        btt.classList.add("opacity-0", "invisible");
-        btt.classList.remove("opacity-100", "visible");
-      }
-    },
-    { passive: true },
-  );
-  btt.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" }),
-  );
-}
-
-// ── Active Nav Link Highlight ─────────────────────────────────────────────
-
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-link");
-
-function updateActiveLink() {
-  let current = "home";
-  sections.forEach((sec) => {
-    const top = sec.getBoundingClientRect().top;
-    if (top <= 200) current = sec.id;
-  });
-  navLinks.forEach((link) => {
-    link.classList.remove("text-primary");
-    link.classList.add("text-slate-700");
-    if (link.getAttribute("href") === "#" + current) {
-      link.classList.add("text-primary");
-      link.classList.remove("text-slate-700");
+const topAccordions = document.querySelectorAll(".mobile-top-accordion");
+topAccordions.forEach((acc) => {
+  acc.addEventListener("toggle", () => {
+    if (acc.open) {
+      topAccordions.forEach((other) => {
+        if (other !== acc && other.open) {
+          other.open = false;
+        }
+      });
     }
   });
-}
+});
 
-window.addEventListener("scroll", updateActiveLink, { passive: true });
-updateActiveLink();
+const subAccordions = document.querySelectorAll(".mobile-sub-accordion");
+subAccordions.forEach((acc) => {
+  acc.addEventListener("toggle", () => {
+    if (acc.open) {
+      subAccordions.forEach((other) => {
+        if (other !== acc && other.open) {
+          other.open = false;
+        }
+      });
+    }
+  });
+});
 
 // ── Swiper Parallax Hero ─────────────────────────────────────────────────
 
@@ -145,16 +201,17 @@ function resetAndStartProgress(realIndex) {
   if (activeNum) {
     activeNum.textContent = `0${realIndex + 1}`;
   }
-  if (!singleProgress) return;
   if (progressTween) progressTween.kill();
 
-  gsap.killTweensOf(singleProgress);
-  gsap.set(singleProgress, { width: "0%" });
-  progressTween = gsap.to(singleProgress, {
-    width: "100%",
-    duration: 6.0,
-    ease: "none",
-  });
+  if (singleProgress) {
+    gsap.killTweensOf(singleProgress);
+    gsap.set(singleProgress, { width: "0%" });
+    progressTween = gsap.to(singleProgress, {
+      width: "100%",
+      duration: 6.0,
+      ease: "none",
+    });
+  }
 }
 
 function animateSlideContent(slide) {
@@ -248,49 +305,7 @@ document.querySelectorAll(".section-header").forEach((header) => {
 
 // ── Destinations (Static layout, animations removed) ─────────────────────
 
-// ── Timeline (Why Us) ────────────────────────────────────────────────────
-
-gsap.to(".timeline-progress", {
-  height: "100%",
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".why-us-section",
-    start: "top 60%",
-    end: "bottom 60%",
-    scrub: 1,
-  },
-});
-
-gsap.from(".timeline-circle", {
-  scale: 0,
-  opacity: 0,
-  duration: 0.5,
-  stagger: 0.25,
-  ease: "back.out(1.7)",
-  scrollTrigger: {
-    trigger: ".why-us-section",
-    start: "top 60%",
-    end: "bottom 60%",
-    scrub: 1,
-  },
-});
-
-document.querySelectorAll(".timeline-item").forEach((item, index) => {
-  const card = item.querySelector(".timeline-card");
-  const isEven = index % 2 === 0;
-  gsap.from(card, {
-    x: isEven ? 100 : -100,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: item,
-      start: "top 85%",
-      end: "top 40%",
-      toggleActions: "play none none reverse",
-    },
-  });
-});
+// ── Why Us Section (Clean & Lightweight) ───────────────────────────────
 
 // ── Interactive Stat Counters ───────────────────────────────────────────
 
@@ -634,4 +649,38 @@ document.addEventListener("keydown", (e) => {
   ) {
     closeSearch();
   }
+});
+
+// ── Trekking in Nepal Megamenu Tabs ───────────────────────────────────────
+const regionTabBtns = document.querySelectorAll(".region-tab-btn");
+const regionPanels = document.querySelectorAll(".region-tab-panel");
+
+function switchRegionTab(tabId) {
+  regionTabBtns.forEach((btn) => {
+    const isActive = btn.getAttribute("data-region-tab") === tabId;
+    btn.classList.toggle("active", isActive);
+  });
+
+  regionPanels.forEach((panel) => {
+    const isTarget = panel.getAttribute("id") === `mega-panel-${tabId}`;
+    if (isTarget) {
+      panel.classList.remove("hidden");
+      panel.style.display = "";
+    } else {
+      panel.classList.add("hidden");
+      panel.style.display = "none";
+    }
+  });
+}
+
+regionTabBtns.forEach((btn) => {
+  btn.addEventListener("mouseenter", () => {
+    const tabId = btn.getAttribute("data-region-tab");
+    if (tabId) switchRegionTab(tabId);
+  });
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const tabId = btn.getAttribute("data-region-tab");
+    if (tabId) switchRegionTab(tabId);
+  });
 });
