@@ -58,28 +58,28 @@
     <!-- Header -->
     <header class="relative z-50">
       <!-- Tier 1: Promo Bar (scrolls away) -->
-      <div id="promo-bar" class="bg-[#E8604C] text-white">
+      <div id="promo-bar" class="bg-primary text-white">
         <div
           class="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between text-sm"
         >
           <div class="flex items-center truncate">
             <span
-              class="bg-white text-[#E8604C] text-[10px] font-black px-2 py-0.5 rounded-full mr-2.5 shadow-xs flex-shrink-0 tracking-wider"
+              class="bg-[#E8604C] text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full mr-2.5 shadow-xs flex-shrink-0"
               >OFFER</span
             >
-            <p class="truncate font-semibold text-xs sm:text-sm text-white">
+            <p class="truncate font-medium text-xs sm:text-sm">
               Discover the Himalayas — Special Seasonal Offers Available!
             </p>
           </div>
           <div class="flex items-center gap-4 flex-shrink-0">
             <a
               href="#packages"
-              class="text-white hover:text-white/80 font-bold text-xs whitespace-nowrap transition-colors underline underline-offset-2"
+              class="text-[#FF8A65] hover:text-white font-bold text-xs whitespace-nowrap transition-colors underline"
               >View Offer &rarr;</a
             >
             <button
               id="promo-close"
-              class="text-white/80 hover:text-white transition-colors flex-shrink-0 cursor-pointer"
+              class="text-white/60 hover:text-white transition-colors flex-shrink-0 cursor-pointer"
               aria-label="Dismiss"
             >
               <svg class="w-4 h-4">
@@ -193,9 +193,9 @@
         </div>
       </div>
 
-      <!-- Tier 3: Main Navigation (STICKY on scroll) -->
+      <!-- Tier 3: Main Navigation (STICKY on scroll, spacious non-skinny header) -->
       <nav id="main-nav" class="bg-white transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between min-h-[68px] lg:min-h-[82px] py-2 lg:py-3.5">
           <!-- Logo in sticky nav (desktop only, hidden by default, shown prominently when sticky) -->
           <a
             href="#home"
@@ -205,7 +205,7 @@
             <img
               src="assets/images/magicla-ascent-logo.png"
               alt="Magical Ascents"
-              class="h-11 lg:h-12 w-auto object-contain drop-shadow-xs"
+              class="h-14 lg:h-16 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300"
             />
           </a>
           <!-- Nav links (desktop dropdowns) -->
