@@ -112,8 +112,15 @@ details summary {
 
 .premium-text-shadow {
   text-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.9),
-    0 4px 8px rgba(0, 0, 0, 0.95);
+    0 2px 10px rgba(0, 0, 0, 0.95),
+    0 4px 20px rgba(0, 0, 0, 0.8),
+    0 1px 3px rgba(0, 0, 0, 1);
+}
+
+.hero-description {
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.9),
+    0 2px 12px rgba(0, 0, 0, 0.7);
 }
 
 .btn-premium-fill {
