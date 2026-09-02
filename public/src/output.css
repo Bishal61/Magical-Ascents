@@ -3136,11 +3136,6 @@
       display: none;
     }
   }
-  .lg\:h-11 {
-    @media (width >= 64rem) {
-      height: calc(var(--spacing) * 11);
-    }
-  }
   .lg\:h-18 {
     @media (width >= 64rem) {
       height: calc(var(--spacing) * 18);
