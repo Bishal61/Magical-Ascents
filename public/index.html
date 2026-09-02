@@ -118,7 +118,7 @@
               <img
                 src="assets/images/magicla-ascent-logo.png"
                 alt="Magical Ascents"
-                class="h-16 lg:h-18 w-auto object-contain"
+                class="h-16 lg:h-18 w-auto object-contain brightness-0 invert drop-shadow-sm"
               />
             </a>
           </div>
@@ -193,9 +193,9 @@
         </div>
       </div>
 
-      <!-- Tier 3: Main Navigation (STICKY on scroll, medium size) -->
-      <nav id="main-nav" class="bg-white transition-all duration-300 py-1">
-        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between relative">
+      <!-- Tier 3: Main Navigation (STICKY on scroll, 64px height) -->
+      <nav id="main-nav" class="bg-white transition-all duration-300 min-h-[64px] flex items-center">
+        <div class="max-w-6xl mx-auto px-6 w-full flex items-center justify-between relative">
           <!-- Logo in sticky nav (desktop only, hidden by default, shown cleanly when sticky) -->
           <a
             href="#home"
@@ -205,7 +205,7 @@
             <img
               src="assets/images/magicla-ascent-logo.png"
               alt="Magical Ascents"
-              class="h-12 w-auto object-contain"
+              class="h-11 w-auto object-contain"
             />
           </a>
           <!-- Nav links (desktop dropdowns) -->
